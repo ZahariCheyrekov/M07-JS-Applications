@@ -1,4 +1,4 @@
-async function attachEvents() {
+function attachEvents() {
     const loadPostsBtn = document.getElementById('btnLoadPosts');
     const viewPostsBtn = document.getElementById('btnViewPost');
     const posts = document.getElementById('posts');
@@ -7,7 +7,7 @@ async function attachEvents() {
     const postsUrl = 'http://localhost:3030/jsonstore/blog/posts';
     const commentsUrl = 'http://localhost:3030/jsonstore/blog/comments';
 
-    loadPostsBtn.addEventListener('click', async () => {
+    loadPostsBtn.addEventListener('click', () => {
         if (loaded) {
             return;
         }
