@@ -25,3 +25,9 @@ async function getInfo() {
     idField.value = '';
 }
 
+function createComponent(busId, time) {
+    const li = document.createElement('li');
+    li.textContent = `Bus ${busId} arrives in ${time} minutes`;
+    return li;
+}
+
