@@ -1,11 +1,15 @@
 async function getInfo() {
+    let prevStopId = '';
+
     const idField = document.getElementById('stopId');
     const divResult = document.getElementById('stopName');
     const busesUl = document.getElementById('buses');
 
-    const url = `http://localhost:3030/jsonstore/bus/businfo/${idField.value}`;
+ 
 
-    clearBussesElements(busesUl);
+    const url = `http://localhost:3030/jsonstore/bus/businfo/${idField.value}`;
+    clearBuses(busesUl);
+
 
     try {
         const response = await fetch(url);
@@ -31,3 +35,8 @@ function createComponent(busId, time) {
     return li;
 }
 
+function clearBuses(busesUl) {
+    while (busesUl.firstChild) {
+        busesUl.removeChild(busesUl.firstChild);
+    }
+}
