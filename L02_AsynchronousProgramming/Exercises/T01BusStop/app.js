@@ -1,8 +1,11 @@
 async function getInfo() {
     const idField = document.getElementById('stopId');
     const divResult = document.getElementById('stopName');
+    const busesUl = document.getElementById('buses');
 
     const url = `http://localhost:3030/jsonstore/bus/businfo/${idField.value}`;
+
+    clearBussesElements(busesUl);
 
     try {
         const response = await fetch(url);
@@ -11,12 +14,14 @@ async function getInfo() {
         const { name } = data;
         divResult.textContent = name;
 
-        // Bus {busId} arrives in {time} minutes
+        for (const [busId, time] of Object.entries(data.buses)) {
+            busesUl.appendChild(createComponent(busId, time));
+        }
 
     } catch (error) {
         divResult.textContent = 'Error';
     }
 
     idField.value = '';
-
 }
+
