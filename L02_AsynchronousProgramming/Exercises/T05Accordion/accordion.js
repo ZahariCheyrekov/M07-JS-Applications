@@ -41,5 +41,11 @@ function createArticle({ _id, title }) {
     return accordion;
 }
 
+function createComponent(type, className, content) {
+    const element = document.createElement(type);
+    element.className = className;
+    element.textContent = content;
+    return element;
+}
 
 solution();
