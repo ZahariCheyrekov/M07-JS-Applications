@@ -27,7 +27,13 @@ async function attachEvents() {
 
     });
 
-    
+    function createComponent(data, key) {
+        const component = document.createElement('option');
+        component.setAttribute('value', key);
+        component.setAttribute('id', data[key].id);
+        component.textContent = data[key].title.toUpperCase();
+        return component;
+    }
 }
 
 attachEvents();
