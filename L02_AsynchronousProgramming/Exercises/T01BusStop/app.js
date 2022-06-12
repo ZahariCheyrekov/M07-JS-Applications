@@ -1,18 +1,10 @@
 async function getInfo() {
-    let prevStopId = '';
-
     const idField = document.getElementById('stopId');
     const divResult = document.getElementById('stopName');
     const busesUl = document.getElementById('buses');
 
-    if (prevStopId == idField.value) {
-        return;
-    }
-    prevStopId = idField.value;
-
     const url = `http://localhost:3030/jsonstore/bus/businfo/${idField.value}`;
     clearBuses(busesUl);
-
 
     try {
         const response = await fetch(url);
