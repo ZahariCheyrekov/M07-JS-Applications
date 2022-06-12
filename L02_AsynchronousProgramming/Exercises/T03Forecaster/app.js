@@ -1,4 +1,4 @@
-async function attachEvents() {
+function attachEvents() {
     const idField = document.getElementById('location');
     const submitBtn = document.getElementById('submit');
     const forecast = document.getElementById('forecast');
