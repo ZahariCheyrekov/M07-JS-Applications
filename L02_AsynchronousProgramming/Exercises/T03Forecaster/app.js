@@ -2,6 +2,7 @@ async function attachEvents() {
     const idField = document.getElementById('location');
     const submitBtn = document.getElementById('submit');
     const forecast = document.getElementById('forecast');
+    const current = document.getElementById('current');
     const upcoming = document.getElementById('upcoming');
     const label = document.querySelector('.label');
     const url = 'http://localhost:3030/jsonstore/forecaster/locations';
@@ -14,14 +15,13 @@ async function attachEvents() {
             const response = await fetch(locationUrl);
             const data = await response.json();
 
-            createCurrent(data);
-
             const upcomingUrl = `http://localhost:3030/jsonstore/forecaster/upcoming/${idField.value}`;
-            const res = await fetch(locationUrl);
+            const res = await fetch(upcomingUrl);
             const dataUpcoming = await res.json();
 
-            forecast.style.display = '';
+            forecast.style.display = 'block';
 
+            createCurrent(data);
             createUpcoming(dataUpcoming);
 
         } catch (error) {
@@ -32,19 +32,31 @@ async function attachEvents() {
     }
 
     function createCurrent(data) {
-        const divForecasts = createComponent('div', undefined, 'forecasts');
+        const divForecasts = createComponent('div', '', 'forecasts');
         const conditionSymbol = createComponent('span', getWeatherIcon(data.forecast.condition), 'condition symbol')
-        console.log(data);
+        const spanCondition = createComponent('span', '', 'condition');
+        const forecastDataOne = createComponent('span', data.name, 'forecast-data');
+        const forecastDataTwo = createComponent('span', `${data.forecast.low}°/${data.forecast.high}°`, 'forecast-data');
+        const forecastDataThree = createComponent('span', data.forecast.condition, 'forecast-data');
+
+        spanCondition.appendChild(forecastDataOne);
+        spanCondition.appendChild(forecastDataTwo);
+        spanCondition.appendChild(forecastDataThree);
+
+        divForecasts.appendChild(conditionSymbol);
+        divForecasts.appendChild(spanCondition);
+
+        current.appendChild(divForecasts);
     }
 
     function createUpcoming(dataUpcoming) {
-
+       
     }
 
     function createComponent(type, content, className) {
         const element = document.createElement(type);
-        element.textContent = content;
-        element.classList.add(className);
+        element.innerHTML = content;
+        element.className = className;
         return element;
     }
 
@@ -56,7 +68,6 @@ async function attachEvents() {
             'Rain': '&#x2614',
             'Degrees': '&#176'
         };
-
         return types[condition];
     }
 }
