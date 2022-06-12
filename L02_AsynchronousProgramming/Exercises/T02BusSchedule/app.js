@@ -3,16 +3,17 @@ function solve() {
     const arriveBtn = document.getElementById('arrive');
     const infoSpan = document.querySelector('.info');
     const url = 'http://localhost:3030/jsonstore/bus/schedule/2572';
+    let stop = '';
 
     async function depart() {
-        disableButtons(true, false);
 
         try {
             const response = await fetch(url);
             const data = await response.json();
 
-            const { next } = data;
-            infoSpan.textContent = `Next stop ${next.slice(0, 1).toUpperCase() + next.slice(1)}`;
+            disableButtons(true, false);
+            stop = `${data.next.slice(0, 1).toUpperCase() + data.next.slice(1)}`;
+            infoSpan.textContent = `Next stop ${stop}`;
 
         } catch (error) {
             infoSpan.textContent = 'Error';
@@ -21,6 +22,7 @@ function solve() {
     }
 
     function arrive() {
+        infoSpan.textContent = `Arriving at ${stop}`;
         disableButtons(false, true);
     }
 
