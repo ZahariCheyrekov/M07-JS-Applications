@@ -29,7 +29,10 @@ function solve() {
         arrive
     };
 
-   
+    function disableButtons(first, second) {
+        departBtn.disabled = first;
+        arriveBtn.disabled = second;
+    }
 }
 
 let result = solve();
