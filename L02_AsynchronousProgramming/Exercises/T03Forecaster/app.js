@@ -50,7 +50,21 @@ async function attachEvents() {
     }
 
     function createUpcoming(dataUpcoming) {
-       
+        const forecastDiv = createComponent('div', '', 'forecasts-info');
+
+        dataUpcoming.forecast.forEach(el => {
+            const upcomingSpan = createComponent('span', '', 'upcoming');
+            const symbolSpan = createComponent('span', getWeatherIcon(el.condition), 'symbol');
+            const forecastSpan = createComponent('span', `${el.low}°/${el.high}°`, 'forecast-data',);
+            const wordSpan = createComponent('span', el.condition, 'forecast-data');
+
+            upcomingSpan.appendChild(symbolSpan);
+            upcomingSpan.appendChild(forecastSpan);
+            upcomingSpan.appendChild(wordSpan);
+            forecastDiv.appendChild(upcomingSpan);
+        });
+
+        upcoming.appendChild(forecastDiv);
     }
 
     function createComponent(type, content, className) {
