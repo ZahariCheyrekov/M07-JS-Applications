@@ -30,7 +30,7 @@ function createArticle({ _id, title }) {
             const dataEl = await response.json();
 
             moreBtn.textContent = 'Less';
-            extraDiv.style.display = '';
+            extraDiv.style.display = 'block';
             contentParagraph.textContent = dataEl.content;
         } else {
             moreBtn.textContent = 'More';
