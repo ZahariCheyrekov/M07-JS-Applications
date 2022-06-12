@@ -14,11 +14,13 @@ async function attachEvents() {
             const response = await fetch(locationUrl);
             const data = await response.json();
 
+
+
             const upcomingUrl = `http://localhost:3030/jsonstore/forecaster/upcoming/${idField.value}`;
             const res = await fetch(locationUrl);
             const dataUpcoming = await res.json();
 
-
+            forecast.style.display = '';
 
         } catch (error) {
             label.textContent = 'Error';
@@ -26,6 +28,12 @@ async function attachEvents() {
             upcoming.style.display = 'none';
         }
     };
+}
+
+function createComponent(type, content) {
+    const element = document.createElement(type);
+    element.textContent = content;
+    return element;
 }
 
 function getWeatherIcon(condition) {
