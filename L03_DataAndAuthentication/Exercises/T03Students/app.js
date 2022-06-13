@@ -41,7 +41,8 @@ function createStudent(ev) {
     ev.preventDefault();
 
     if (isNaN(inputFields[3].value)) {
-    
+        alert('Grade must be a number');
+        inputFields[3].value = '';
         return;
     }
 
