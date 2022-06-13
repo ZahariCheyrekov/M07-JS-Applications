@@ -4,6 +4,8 @@ const inputFields = Array.from(document.querySelectorAll('.inputs input'));
 const url = 'http://localhost:3030/jsonstore/collections/students';
 
 function solve() {
+    table.replaceChildren();
+
     fetch(url)
         .then(res => res.json())
         .then(data => {
@@ -39,6 +41,7 @@ function createStudent(ev) {
     ev.preventDefault();
 
     if (isNaN(inputFields[3].value)) {
+    
         return;
     }
 
@@ -55,7 +58,17 @@ function createStudent(ev) {
 
     clearInputFields();
 
+    postStudent(student);
+}
 
+function postStudent(student) {
+    fetch(url, {
+        method: 'POST',
+        'Contetn-Type': 'application/json',
+        body: JSON.stringify(student)
+    });
+
+    solve();
 }
 
 function clearInputFields() {
