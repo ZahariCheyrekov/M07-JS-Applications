@@ -1,10 +1,12 @@
 const loadBtn = document.getElementById('btnLoad');
+const createBtn = document.createElement('btnCreate');
 const phonebook = document.getElementById('phonebook');
 
 const url = 'http://localhost:3030/jsonstore/phonebook';
 
 function attachEvents() {
     loadBtn.addEventListener('click', getAllNumbers);
+    createBtn.addEventListener('click', createNumber);
 }
 
 function getAllNumbers() {
@@ -18,17 +20,19 @@ function getAllNumbers() {
 
                 const deleteBtn = document.createElement('button');
                 deleteBtn.textContent = 'Delete';
-                deleteBtn.addEventListener('click', () => {
-                    fetch(`${url}/${_id}`, {
-                        method: 'DELETE'
-                    });
-                });
+                deleteBtn.addEventListener('click', deleteNumber);
 
                 li.appendChild(deleteBtn);
                 phonebook.appendChild(li);
             }
         })
         .catch(error => console.log(error));
+}
+
+function deleteNumber(ev) {
+    fetch(`${url}/${ev.target.parentNode.id}`, {
+        method: 'DELETE'
+    });
 }
 
 
