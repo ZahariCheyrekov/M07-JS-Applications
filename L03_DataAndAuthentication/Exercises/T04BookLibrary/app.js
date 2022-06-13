@@ -21,8 +21,9 @@ function solve() {
     submitBtn.addEventListener('click', (ev) => {
         ev.preventDefault();
 
-        const title = inputFields[0].value;
-        const author = inputFields[1].value;
+        const inputValues = getInputFieldsValues();
+        const title = inputValues.title;
+        const author = inputValues.author;
 
         if (!title.trim() || !author.trim()) {
             return;
@@ -49,6 +50,7 @@ function solve() {
         const titleName = createComponent('td', title);
         const buttonsTd = createComponent('td', '');
         const editBtn = createComponent('button', 'Edit');
+        editBtn.addEventListener('click', editBook);
         const deleteBtn = createComponent('button', 'Delete');
 
         buttonsTd.appendChild(editBtn);
@@ -60,6 +62,32 @@ function solve() {
         return tr;
     }
 
+    async function editBook(ev) {
+        const bookId = ev.target.parentNode.parentNode.id;
+
+        const data = await fetch(`${url}/${bookId}`);
+        const res = await data.json();
+
+        const { title, author } = res;
+
+        inputFields[0].value = title;
+        inputFields[1].value = author;
+
+        const values = getInputFieldsValues();
+
+        const submit = document.querySelector('form button');
+        submit.addEventListener('click', () => {
+            fetch(`${url}/${bookId}`, {
+                method: 'PUT',
+                'Content-Type': 'application/json',
+                body: JSON.stringify({
+                    author: values.author,
+                    title: values.title
+                })
+            })
+        });
+    }
+
     function createComponent(type, value) {
         const td = document.createElement(type);
         td.textContent = value;
@@ -68,6 +96,16 @@ function solve() {
 
     function clearInputFields() {
         inputFields.forEach(input => input.value = '');
+    }
+
+    function getInputFieldsValues() {
+        const title = inputFields[0].value;
+        const author = inputFields[1].value;
+
+        return {
+            title,
+            author
+        }
     }
 }
 
