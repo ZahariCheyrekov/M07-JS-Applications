@@ -23,6 +23,9 @@ function sendMessage() {
             message: contentInput.value
         })
     })
+        .catch(error => console.log(error));
+
+    clearInputFields();
 }
 
 function getAllMessages() {
@@ -34,6 +37,11 @@ function getAllMessages() {
                 .join('\n');
         })
         .catch(error => console.log(error));
+}
+
+function clearInputFields() {
+    nameInput.value = '';
+    contentInput.value = '';
 }
 
 attachEvents();
