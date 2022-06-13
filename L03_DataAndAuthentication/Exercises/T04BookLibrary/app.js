@@ -1,5 +1,7 @@
 function solve() {
     const loadBooksBtn = document.getElementById('loadBooks');
+    const submitBtn = document.querySelector('form button');
+    const inputFields = document.querySelectorAll('form input');
     const tbody = document.querySelector('tbody');
     const url = 'http://localhost:3030/jsonstore/collections/books';
 
@@ -10,11 +12,32 @@ function solve() {
             .then(res => res.json())
             .then(data => {
                 Object.values(data).forEach(book => {
-                    console.log(book)
                     tbody.appendChild(addBook(book));
                 });
             })
             .catch(error => console.log(error));
+    });
+
+    submitBtn.addEventListener('click', (ev) => {
+        ev.preventDefault();
+
+        const title = inputFields[0].value;
+        const author = inputFields[1].value;
+
+        if (!title.trim() || !author.trim()) {
+            return;
+        }
+
+        fetch(url, {
+            method: 'POST',
+            'Content-Type': 'application/json',
+            body: JSON.stringify({
+                title,
+                author
+            })
+        })
+
+        loadBooksBtn.click();
     });
 
     function addBook({ author, title }) {
@@ -26,7 +49,8 @@ function solve() {
         const editBtn = createComponent('button', 'Edit');
         const deleteBtn = createComponent('button', 'Delete');
 
-        buttonsTd.appendChild(editBtn, deleteBtn);
+        buttonsTd.appendChild(editBtn);
+        buttonsTd.appendChild(deleteBtn);
         tr.appendChild(authorName);
         tr.appendChild(titleName);
         tr.appendChild(buttonsTd);
