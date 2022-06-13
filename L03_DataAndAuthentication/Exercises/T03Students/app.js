@@ -1,5 +1,6 @@
 const submitBtn = document.getElementById('submit');
 const table = document.querySelector('#results tbody');
+const inputFields = Array.from(document.querySelectorAll('.inputs input'));
 const url = 'http://localhost:3030/jsonstore/collections/students';
 
 function solve() {
@@ -20,7 +21,6 @@ function createTableRow(student) {
     grade = Number(grade);
 
     const tr = document.createElement('tr');
-
     createTableData(tr, firstName);
     createTableData(tr, lastName);
     createTableData(tr, facultyNumber);
@@ -37,6 +37,20 @@ function createTableData(tr, value) {
 
 function createStudent(ev) {
     ev.preventDefault();
+
+    for (const input of inputFields) {
+        if (!input.value) {
+            return;
+        }
+    }
+
+    console.log('HI')
+
+    clearInputFields();
+}
+
+function clearInputFields() {
+    inputFields.forEach(input => input.value = '');
 }
 
 solve();
