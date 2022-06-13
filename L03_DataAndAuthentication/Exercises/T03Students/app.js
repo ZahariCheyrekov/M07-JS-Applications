@@ -41,13 +41,14 @@ function createStudent(ev) {
     ev.preventDefault();
 
     for (const input of inputFields) {
-        if (!input.value) {
+        if (!input.value.trim()) {
             return;
         }
     }
 
-    if (isNaN(inputFields[3].value)) {
-        alert('Grade must be a number');
+    if (isNaN(inputFields[2].value) || isNaN(inputFields[3].value)) {
+        alert('Enter valid number values');
+        inputFields[2].value = '';
         inputFields[3].value = '';
         return;
     }
