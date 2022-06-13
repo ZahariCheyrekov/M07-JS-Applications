@@ -1,5 +1,7 @@
 const loadBtn = document.getElementById('btnLoad');
-const createBtn = document.createElement('btnCreate');
+const createBtn = document.getElementById('btnCreate');
+const personInput = document.getElementById('person');
+const phoneInput = document.getElementById('phone');
 const phonebook = document.getElementById('phonebook');
 
 const url = 'http://localhost:3030/jsonstore/phonebook';
@@ -29,11 +31,28 @@ function getAllNumbers() {
         .catch(error => console.log(error));
 }
 
+function createNumber() {
+    if (!personInput.value || !phoneInput.value) {
+        return;
+    }
+
+    fetch(url, {
+        method: 'POST',
+        'Content-Type': 'application/json',
+        body: JSON.stringify({
+            person: personInput.value,
+            phone: phoneInput.value
+        })
+    });
+
+    clearInputFields();
+    loadBtn.click();
+}
+
 function deleteNumber(ev) {
     fetch(`${url}/${ev.target.parentNode.id}`, {
         method: 'DELETE'
     });
 }
-
 
 attachEvents();
