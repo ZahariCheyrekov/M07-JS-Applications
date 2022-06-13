@@ -1,13 +1,13 @@
-const url = 'http://localhost:3030/jsonstore/collections/students';
 const submitBtn = document.getElementById('submit');
+const table = document.querySelector('#results tbody');
+const url = 'http://localhost:3030/jsonstore/collections/students';
 
 function solve() {
     fetch(url)
         .then(res => res.json())
         .then(data => {
             Object.values(data).forEach(student => {
-
-                createTableRow(student);
+                table.appendChild(createTableRow(student));
             })
         })
         .catch(error => console.log(error));
@@ -20,7 +20,15 @@ function createTableRow(student) {
     grade = Number(grade);
 
     const tr = document.createElement('tr');
+
+    createTableData(tr, firstName);
+    createTableData(tr, lastName);
+    createTableData(tr, facultyNumber);
+    createTableData(tr, grade);
+
+    return tr;
 }
+
 
 function createStudent(ev) {
     ev.preventDefault();
