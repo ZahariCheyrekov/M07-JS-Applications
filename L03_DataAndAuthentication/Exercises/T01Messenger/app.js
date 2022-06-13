@@ -1,4 +1,5 @@
 const url = 'http://localhost:3030/jsonstore/messenger';
+const textArea = document.getElementById('messages');
 
 function attachEvents() {
     const submitBtn = document.getElementById('submit');
@@ -10,7 +11,9 @@ function getAllMessages() {
     fetch(url)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            textArea.value = Object.values(data)
+                .map(m => `${m.author}: ${m.message || m.content}`)
+                .join('\n');
         })
         .catch(error => console.log(error));
 }
