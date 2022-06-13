@@ -55,4 +55,9 @@ function deleteNumber(ev) {
     });
 }
 
+function clearInputFields() {
+    personInput.value = '';
+    phoneInput.value = '';
+}
+
 attachEvents();
