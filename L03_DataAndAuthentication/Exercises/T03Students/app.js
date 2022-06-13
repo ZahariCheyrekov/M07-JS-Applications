@@ -38,15 +38,24 @@ function createTableData(tr, value) {
 function createStudent(ev) {
     ev.preventDefault();
 
+    if (isNaN(inputFields[3].value)) {
+        return;
+    }
+
     for (const input of inputFields) {
         if (!input.value) {
             return;
         }
     }
 
-    console.log('HI')
+    const student = {};
+    inputFields.forEach(input => {
+        student[input.name] = input.value;
+    });
 
     clearInputFields();
+
+
 }
 
 function clearInputFields() {
