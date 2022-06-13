@@ -1,5 +1,4 @@
 function solve() {
-
     const loadBooksBtn = document.getElementById('loadBooks');
     const tbody = document.querySelector('tbody');
     const url = 'http://localhost:3030/jsonstore/collections/books';
@@ -12,21 +11,31 @@ function solve() {
             .then(data => {
                 Object.values(data).forEach(book => {
                     console.log(book)
-                    // tbody.appendChild(createBook(book));
+                    tbody.appendChild(addBook(book));
                 });
             })
             .catch(error => console.log(error));
     });
 
-    function createBook({ author, title }) {
+    function addBook({ author, title }) {
         const tr = document.createElement('tr');
 
-        const authorName = createTableData(tr, author);
-        const titleName = createTableData(tr, title);
+        const authorName = createComponent('td', author);
+        const titleName = createComponent('td', title);
+        const buttonsTd = createComponent('td', '');
+        const editBtn = createComponent('button', 'Edit');
+        const deleteBtn = createComponent('button', 'Delete');
+
+        buttonsTd.appendChild(editBtn, deleteBtn);
+        tr.appendChild(authorName);
+        tr.appendChild(titleName);
+        tr.appendChild(buttonsTd);
+
+        return tr;
     }
 
-    function createTableData(value) {
-        const td = document.createElement('td');
+    function createComponent(type, value) {
+        const td = document.createElement(type);
         td.textContent = value;
         return td;
     }
