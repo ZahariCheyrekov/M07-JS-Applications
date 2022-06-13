@@ -12,6 +12,8 @@ function attachEvents() {
 }
 
 function getAllNumbers() {
+    phonebook.replaceChildren();
+
     fetch(url)
         .then(res => res.json())
         .then(data => {
@@ -53,6 +55,8 @@ function deleteNumber(ev) {
     fetch(`${url}/${ev.target.parentNode.id}`, {
         method: 'DELETE'
     });
+
+    loadBtn.click();
 }
 
 function clearInputFields() {
