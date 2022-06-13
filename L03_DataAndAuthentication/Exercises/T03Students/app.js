@@ -29,6 +29,11 @@ function createTableRow(student) {
     return tr;
 }
 
+function createTableData(tr, value) {
+    const td = document.createElement('td');
+    td.textContent = value;
+    tr.appendChild(td);
+}
 
 function createStudent(ev) {
     ev.preventDefault();
