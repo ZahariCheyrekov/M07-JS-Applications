@@ -38,6 +38,12 @@ function createNumber() {
         return;
     }
 
+    if (isNaN(Number(phoneInput.value))) {
+        alert('Enter valid phone number');
+        phoneInput.value = '';
+        return;
+    }
+
     fetch(url, {
         method: 'POST',
         'Content-Type': 'application/json',
