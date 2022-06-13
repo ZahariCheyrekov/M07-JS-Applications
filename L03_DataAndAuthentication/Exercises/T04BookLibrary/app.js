@@ -49,9 +49,12 @@ function solve() {
         const authorName = createComponent('td', author);
         const titleName = createComponent('td', title);
         const buttonsTd = createComponent('td', '');
+
         const editBtn = createComponent('button', 'Edit');
         editBtn.addEventListener('click', editBook);
+
         const deleteBtn = createComponent('button', 'Delete');
+        deleteBtn.addEventListener('click', deleteBook);
 
         buttonsTd.appendChild(editBtn);
         buttonsTd.appendChild(deleteBtn);
@@ -63,6 +66,8 @@ function solve() {
     }
 
     async function editBook(ev) {
+        deleteBook(ev);
+
         const bookId = ev.target.parentNode.parentNode.id;
 
         const data = await fetch(`${url}/${bookId}`);
@@ -75,17 +80,28 @@ function solve() {
 
         const values = getInputFieldsValues();
 
-        const submit = document.querySelector('form button');
-        submit.addEventListener('click', () => {
-            fetch(`${url}/${bookId}`, {
-                method: 'PUT',
-                'Content-Type': 'application/json',
-                body: JSON.stringify({
-                    author: values.author,
-                    title: values.title
-                })
+        if (!values.title.trim() || !values.author.trim()) {
+            return;
+        }
+
+        fetch(`${url}/${bookId}`, {
+            method: 'PUT',
+            'Content-Type': 'application/json',
+            body: JSON.stringify({
+                author: values.author,
+                title: values.title
             })
         });
+    }
+
+    function deleteBook(ev) {
+        const bookId = ev.target.parentNode.parentNode.id;
+
+        fetch(`${url}/${bookId}`, {
+            method: 'DELETE'
+        })
+
+        loadBooksBtn.click();
     }
 
     function createComponent(type, value) {
