@@ -11,8 +11,8 @@ function solve() {
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                Object.values(data).forEach(book => {
-                    tbody.appendChild(addBook(book));
+                Object.entries(data).forEach(([id, book]) => {
+                    tbody.appendChild(addBook(id, book));
                 });
             })
             .catch(error => console.log(error));
@@ -37,11 +37,13 @@ function solve() {
             })
         })
 
+        clearInputFields();
         loadBooksBtn.click();
     });
 
-    function addBook({ author, title }) {
+    function addBook(id, { author, title }) {
         const tr = document.createElement('tr');
+        tr.id = id;
 
         const authorName = createComponent('td', author);
         const titleName = createComponent('td', title);
@@ -62,6 +64,10 @@ function solve() {
         const td = document.createElement(type);
         td.textContent = value;
         return td;
+    }
+
+    function clearInputFields() {
+        inputFields.forEach(input => input.value = '');
     }
 }
 
