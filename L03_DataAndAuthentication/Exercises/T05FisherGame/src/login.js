@@ -34,6 +34,6 @@ async function login(ev) {
     }
 
     const data = await res.json();
-    sessionStorage.setItem('userData', JSON.stringify({ token: data.accessToken, _id: data._id }))
+    sessionStorage.setItem('userData', JSON.stringify({ token: data.accessToken, _id: data._id }));
     location.pathname = 'index.html';
 }
