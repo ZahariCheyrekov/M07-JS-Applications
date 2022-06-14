@@ -1,4 +1,4 @@
-const form = document.getElementById('registerForm');
+const form = document.getElementById('register');
 const url = 'http://localhost:3030/users/register';
 
 form.addEventListener('submit', register);
