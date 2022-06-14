@@ -28,7 +28,8 @@ async function register(ev) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            email, password
+            email,
+            password
         })
     });
 
