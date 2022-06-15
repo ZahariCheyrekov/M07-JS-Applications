@@ -6,6 +6,7 @@ import { updateNavigation } from './utils.js';
 const routes = {
     '/': homePage,
     '/login': loginPage,
+    '/logout': logout,
     '/register': registerPage
 };
 
@@ -24,6 +25,11 @@ function onNavigate(ev) {
             view();
         }
     }
+}
+
+function logout() {
+    localStorage.removeItem('user');
+    updateNavigation();
 }
 
 updateNavigation();

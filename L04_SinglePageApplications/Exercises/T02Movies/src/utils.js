@@ -2,6 +2,7 @@ const sections = document.querySelectorAll('.hidden-section');
 const userLinks = document.querySelectorAll('.user');
 const guestLinks = document.querySelectorAll('.guest');
 const welcomeText = document.querySelector('.welcome-text .nav-link.user');
+const addMovieBtn = document.querySelector('#add-movie-button');
 
 export function loadSection(section) {
     hideSections();
@@ -33,9 +34,11 @@ export function updateNavigation() {
         userLinks.forEach(link => link.style.display = 'inline-block');
         guestLinks.forEach(link => link.style.display = 'none');
         welcomeText.textContent = `Welcome, ${user.email}`;
+        addMovieBtn.style.display = 'block';
     } else {
         userLinks.forEach(link => link.style.display = 'none');
         guestLinks.forEach(link => link.style.display = 'inline-block');
         welcomeText.textContent = ``;
+        addMovieBtn.style.display = 'none';
     }
 }
