@@ -9,7 +9,7 @@ const routes = {
     '/login': loginPage,
     '/logout': logout,
     '/register': registerPage,
-    '/create': createPage
+    '/create': createPage,
 };
 
 const navigation = document.querySelector('.navbar');
