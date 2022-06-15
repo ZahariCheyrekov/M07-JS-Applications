@@ -19,5 +19,26 @@ function getData(ev) {
     validateInput(email, password, repeatPassword);
     registerUser(email, password, repeatPassword);
 
+    
+}
+
+function validateInput(email, password, repeatPassword) {
+    if (!email || !password || !repeatPassword) {
+        alert('All fields are required!');
+        return;
+    }
+
+    if (password.length < 6) {
+        alert('Password must be at least 6 characters long!');
+        return;
+    }
+
+    if (password != repeatPassword) {
+        alert('Passwords should match!');
+        return;
+    }
+}
+
+function registerUser(email, password, repeatPassword) {
 
 }
