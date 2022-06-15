@@ -20,8 +20,6 @@ function getData(ev) {
 
     validateInput(email, password, repeatPassword);
     registerUser(email, password);
-
-
 }
 
 function validateInput(email, password, repeatPassword) {
