@@ -23,30 +23,31 @@
                     <a class="nav-link" href="#">Logout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
+                    <a class="nav-link" href="/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Register</a>
+                    <a class="nav-link" href="/register">Register</a>
                 </li>
             </ul>
         </nav>
 
-        <section id="home-page">
+        <section id="home-page hidden-section">
             <div class="jumbotron jumbotron-fluid text-light" style="background-color: #343a40;">
                 <img src="https://slicksmovieblog.files.wordpress.com/2014/08/cropped-movie-banner-e1408372575210.jpg"
                     class="img-fluid" alt="Responsive image" style="width: 150%; height: 200px">
                 <h1 class="display-4">Movies</h1>
                 <p class="lead">Unlimited movies, TV shows, and more. Watch anywhere. Cancel anytime.</p>
             </div>
+            <h1 class="text-center">Movies</h1>
+
+            <section id="add-movie-button">
+                <a href="/create" class="btn btn-warning ">Add Movie</a>
+            </section>
         </section>
 
-        <h1 class="text-center">Movies</h1>
 
-        <section id="add-movie-button">
-            <a href="#" class="btn btn-warning ">Add Movie</a>
-        </section>
 
-        <section id="movie">
+        <section id="movie hidden-section">
             <div class=" mt-3 ">
                 <div class="row d-flex d-wrap">
 
@@ -101,7 +102,7 @@
             </div>
         </section>
 
-        <section id="add-movie">
+        <section id="add-movie hidden-section">
             <form class="text-center border border-light p-5" action="#" method="">
                 <h1>Add Movie</h1>
                 <div class="form-group">
@@ -121,7 +122,7 @@
             </form>
         </section>
 
-        <section id="movie-example">
+        <section id="movie-example hidden-section">
             <div class="container">
                 <div class="row bg-light text-dark">
                     <h1>Movie title: Black Widow</h1>
@@ -144,7 +145,7 @@
             </div>
         </section>
 
-        <section id="edit-movie">
+        <section id="edit-movie hidden-section">
             <form class="text-center border border-light p-5" action="#" method="">
                 <h1>Edit Movie</h1>
                 <div class="form-group">
@@ -164,7 +165,7 @@
             </form>
         </section>
 
-        <section id="form-login">
+        <section id="form-login hidden-section">
             <form class="text-center border border-light p-5" action="" method="">
                 <div class="form-group">
                     <label for="email">Email</label>
@@ -180,7 +181,7 @@
             </form>
         </section>
 
-        <section id="form-sign-up">
+        <section id="form-sign-up hidden-section">
             <form class="text-center border border-light p-5" action="#" method="post">
                 <div class="form-group">
                     <label for="email">Email</label>
