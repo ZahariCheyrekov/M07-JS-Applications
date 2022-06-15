@@ -16,3 +16,9 @@ function showSection(section) {
 function hideSection(section) {
     section.style.display = 'none';
 }
+
+export function loading() {
+    const el = document.createElement('p');
+    el.textContent = 'Loading...';
+    return el;
+}
