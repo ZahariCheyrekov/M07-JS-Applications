@@ -20,3 +20,12 @@ function getData(ev) {
     createMovie(title, description, img);
 }
 
+function validateInput(title, description, img) {
+    if (!title || !description || !img) {
+        alert('All fields are required!');
+    }
+}
+
+function createMovie() {
+
+}

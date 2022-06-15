@@ -19,7 +19,6 @@ const addMovieBtn = document.querySelector('.btn');
 addMovieBtn.addEventListener('click', onNavigate);
 
 function onNavigate(ev) {
-    console.log(ev.target)
     if (ev.target.tagName == 'A' && ev.target.href) {
         ev.preventDefault();
 
