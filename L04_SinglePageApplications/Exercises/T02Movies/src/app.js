@@ -1,5 +1,6 @@
 import { homePage } from './home.js';
 import { loginPage } from './login.js';
+import { registerPage } from './register.js';
 
 const routes = {
     '/': homePage,
