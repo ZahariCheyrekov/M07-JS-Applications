@@ -1,4 +1,7 @@
-import { loadSection } from './utils.js';
+import { homePage } from './home.js';
 
-const homeSection = document.getElementById('home-page');
-loadSection(homeSection);
+const routes = {
+    '/': homePage,
+};
+
+homePage();
