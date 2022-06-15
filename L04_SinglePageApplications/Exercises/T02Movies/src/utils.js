@@ -1,7 +1,7 @@
 const sections = document.querySelectorAll('.hidden-section');
 const userLinks = document.querySelectorAll('.user');
 const guestLinks = document.querySelectorAll('.guest');
-const welcomeText = document.querySelector('.welcome-item');
+const welcomeText = document.querySelector('.welcome-text .nav-link.user');
 
 export function loadSection(section) {
     hideSections();
@@ -26,7 +26,7 @@ export function loading() {
     return el;
 }
 
-function updateNavigation() {
+export function updateNavigation() {
     const user = JSON.parse(localStorage.getItem('user'));
 
     if (user) {

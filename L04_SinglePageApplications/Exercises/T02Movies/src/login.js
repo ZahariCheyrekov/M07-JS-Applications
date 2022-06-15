@@ -1,5 +1,6 @@
 import { loadSection } from './utils.js';
 import { homePage } from './home.js';
+import { updateNavigation } from './utils.js';
 
 const loginSection = document.getElementById('form-login');
 const form = loginSection.querySelector('.text-center.border.border-light.p-5');

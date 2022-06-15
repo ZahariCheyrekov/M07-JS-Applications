@@ -1,6 +1,7 @@
 import { homePage } from './home.js';
 import { loginPage } from './login.js';
 import { registerPage } from './register.js';
+import { updateNavigation } from './utils.js';
 
 const routes = {
     '/': homePage,
@@ -25,4 +26,5 @@ function onNavigate(ev) {
     }
 }
 
+updateNavigation();
 homePage();
