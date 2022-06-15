@@ -1,4 +1,5 @@
 import { loadSection } from './utils.js';
+import { homePage } from './home.js';
 
 const loginSection = document.getElementById('form-login');
 const form = loginSection.querySelector('.text-center.border.border-light.p-5');
@@ -38,4 +39,7 @@ async function loginUser(email, password) {
         alert(error.message);
         throw error;
     }
+
+    homePage();
+    updateNavigation();
 }
