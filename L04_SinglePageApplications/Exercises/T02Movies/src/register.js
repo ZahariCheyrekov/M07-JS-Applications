@@ -1,4 +1,6 @@
 import { loadSection } from './utils.js';
+import { homePage } from './home.js';
+import { updateNavigation } from './utils.js';
 
 const registerSection = document.querySelector('#form-sign-up');
 const form = registerSection.querySelector('.text-center.border.border-light.p-5');
@@ -17,9 +19,9 @@ function getData(ev) {
     const repeatPassword = formData.get('repeatPassword');
 
     validateInput(email, password, repeatPassword);
-    registerUser(email, password, repeatPassword);
+    registerUser(email, password);
 
-    
+
 }
 
 function validateInput(email, password, repeatPassword) {
@@ -39,6 +41,27 @@ function validateInput(email, password, repeatPassword) {
     }
 }
 
-function registerUser(email, password, repeatPassword) {
+async function registerUser(email, password) {
+    try {
+        const res = await fetch('http://localhost:3030/users/register', {
+            method: 'POST',
+            'Content-Type': 'application/json',
+            body: JSON.stringify({ email, password })
+        });
 
+        if (!res.ok) {
+            const error = await res.json();
+            throw new Error(error.message);
+        }
+
+        const user = await res.json();
+        localStorage.setItem('user', JSON.stringify(user));
+
+    } catch (error) {
+        alert(error.message);
+        throw error;
+    }
+
+    homePage();
+    updateNavigation();
 }
