@@ -1,0 +1,32 @@
+{
+    "launch": {
+        "configurations": [
+            {
+                "type": "node",
+                "request": "launch",
+                "name": "Mocha Tests",
+                "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+                "args": [
+                    "-u",
+                    "bdd",
+                    "--timeout",
+                    "999999",
+                    "--colors",
+                    "${file}"
+                ],
+                "internalConsoleOptions": "openOnSessionStart",
+            }
+        ],
+    },
+    "explorer.confirmDragAndDrop": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "workbench.iconTheme": "material-icon-theme",
+    "github.gitAuthentication": false,
+    "git.confirmSync": false,
+    "git.autoRepositoryDetection": false,
+    "git.enableSmartCommit": true,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "files.autoSave": "afterDelay",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "window.zoomLevel": 1,
+}

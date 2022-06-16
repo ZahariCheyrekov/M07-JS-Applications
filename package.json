@@ -1,0 +1,27 @@
+{
+  "name": "m05-js-advanced",
+  "version": "1.0.0",
+  "description": "В курса \"JS Advanced\" се получават задълбочени познания по езика JavaScript, като основи на синтаксиса, работа с масиви, матрици, обекти, класове и писане на функции. Исучават се по-сложни концепции като function context, explicit binding, event loop. Курсът спомага за развитието на алгоритмичното мислене. След успешното завършване на този курс, курсистите имат възможност да работят с DOM дървото, да манипулират по него и да работят с \"event\"-и. Ще се разглеждат функционалния и ООП подходите за програмиране с JavaScript, като ще се изучават концепции, като inheritance, object composition и prototype chain.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZahariCheyrekov/M05-JS-Advanced.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZahariCheyrekov/M05-JS-Advanced/issues"
+  },
+  "homepage": "https://github.com/ZahariCheyrekov/M05-JS-Advanced#readme",
+  "dependencies": {
+    "chai": "^4.3.6",
+    "lit-html": "^2.2.6",
+    "mocha": "^10.0.0"
+  }
+}
