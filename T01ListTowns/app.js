@@ -1,11 +1,17 @@
 import { render } from '../node_modules/lit-html/lit-html.js';
+import { template } from './template.js';
 
 const root = document.getElementById('root');
-const townInput = document.getElementById('towns');
-const loadBtn = document.getElementById('btnLoadTowns');
+const form = document.querySelector('form');
 
-loadBtn.addEventListener('click', (ev) => {
+form.addEventListener('submit', loadTowns);
+
+function loadTowns(ev) {
     ev.preventDefault();
 
-    
-});
+    const formData = new FormData(ev.target);
+    const towns = formData.get('towns').split(/[, ]+/);
+    ev.target.reset();
+
+    render(template(towns), root);
+}
