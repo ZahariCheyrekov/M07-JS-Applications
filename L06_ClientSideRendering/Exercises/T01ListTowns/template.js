@@ -1,4 +1,4 @@
-import { html } from '../node_modules/lit-html/lit-html.js';
+import { html } from './node_modules/lit-html/lit-html.js';
 
 export const template = (towns) => html`<ul>${towns.map(createLi)}</ul>`;
 
