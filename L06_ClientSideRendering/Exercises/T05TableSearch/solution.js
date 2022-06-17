@@ -1,4 +1,4 @@
-import { render } from 'lit-html';
+import { render } from '../node_modules/lit-html/lit-html.js';
 import { tableTemplate } from './template.js';
 import { getTableData } from './api.js';
 
