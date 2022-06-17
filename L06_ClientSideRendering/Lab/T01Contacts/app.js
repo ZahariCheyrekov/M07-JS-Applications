@@ -1,6 +1,6 @@
 import { render } from './node_modules/lit-html/lit-html.js';
-import { contacts } from '../../../contacts.js';
-import { template } from '../../../template.js';
+import { contacts } from './contacts.js';
+import { template } from './template.js';
 
 const root = document.getElementById('contacts');
 const result = contacts.map(template);
