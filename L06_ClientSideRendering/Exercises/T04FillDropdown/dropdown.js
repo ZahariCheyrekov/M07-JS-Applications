@@ -1,5 +1,5 @@
-import { render } from 'lit-html';
-import { html } from 'lit-html';
+import { render } from '../node_modules/lit_html/lit-html.js';
+import { html } from '../node_modules/lit_html/lit-html.js';
 import { getData } from './api.js';
 import { addOption } from './api.js';
 
