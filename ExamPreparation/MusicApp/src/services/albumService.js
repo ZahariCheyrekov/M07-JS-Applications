@@ -7,3 +7,5 @@ export const getAll = () => request.get(`${baseUrl}?sortBy=_createdOn%20desc&dis
 export const getOne = (albumId) => request.get(`${baseUrl}/${albumId}`);
 
 export const create = (albumData) => request.post(baseUrl, albumData);
+
+export const edit = (albumId, albumData) => request.put(`${baseUrl}/${albumId}`, albumData);

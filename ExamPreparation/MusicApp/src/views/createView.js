@@ -1,6 +1,7 @@
 import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 
 import * as albumService from '../services/albumService.js';
+import { albumIsInvalid } from '../utils/validators.js';
 
 const createTemplate = (submitHandler) => html`
     <section class="createPage">

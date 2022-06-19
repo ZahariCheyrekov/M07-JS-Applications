@@ -1,5 +1,7 @@
 import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
+
 import * as albumService from '../services/albumService.js';
+import { albumIsInvalid } from '../utils/validators.js';
 
 const editTemplate = (album, submitHandler) => html`
     <section class="editPage">
@@ -38,13 +40,25 @@ const editTemplate = (album, submitHandler) => html`
 `;
 
 export const editView = (ctx) => {
+    const albumId = ctx.params.albumId;
+
     const submitHandler = (ev) => {
         ev.preventDefault();
 
         const albumData = Object.fromEntries(new FormData(ev.currentTarget));
+
+        if (albumIsInvalid(albumData)) {
+            alert('All fields are required!');
+            return;
+        }
+
+        albumService.edit(albumId, albumData)
+            .then(() => {
+                ctx.page.redirect(`/albums/${albumId}`);
+            });
     }
 
-    albumService.getOne(ctx.params.albumId)
+    albumService.getOne(albumId)
         .then(album => {
             ctx.render(editTemplate(album, submitHandler));
         });
