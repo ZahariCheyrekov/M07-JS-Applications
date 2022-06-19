@@ -1,7 +1,16 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
 
+const guestLinks = html`
+    <li><a href="#">Login</a></li>
+    <li><a href="#">Register</a></li>
+`;
 
-const navigationTemplate = () => html`
+const userLinks = html`
+    <li><a href="#">Create Album</a></li>
+    <li><a href="#">Logout</a></li>
+`;
+
+const navigationTemplate = (isAuthenticated) => html`
     <nav class="header-navigation">
         <img src="./images/headphones.png">
         <a href="#">Home</a>
@@ -9,12 +18,7 @@ const navigationTemplate = () => html`
             <!--All user-->
             <li><a href="#">Catalog</a></li>
             <li><a href="#">Search</a></li>
-            <!--Only guest-->
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
-            <!--Only user-->
-            <li><a href="#">Create Album</a></li>
-            <li><a href="#">Logout</a></li>
+            ${isAuthenticated ? userLinks : guestLinks}
         </ul>
     </nav>
 `;
