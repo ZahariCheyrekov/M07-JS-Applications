@@ -7,7 +7,7 @@ const guestLinks = html`
 
 const userLinks = html`
     <li><a href="/create">Create Album</a></li>
-    <li><a href=".logout">Logout</a></li>
+    <li><a href="/logout">Logout</a></li>
 `;
 
 const navigationTemplate = (user) => html`
