@@ -4,9 +4,9 @@ import { renderNavigationMiddleware, renderContentMiddleware } from './middlewar
 import { homeView } from './views/homeView.js';
 import { loginView } from './views/loginView.js';
 
+page(authMidlleware);
 page(renderNavigationMiddleware);
 page(renderContentMiddleware);
-page(authMidlleware);
 
 page('/', homeView);
 page('/login', loginView);

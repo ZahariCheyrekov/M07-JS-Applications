@@ -32,7 +32,10 @@ export const loginView = (ctx) => {
         authService.login(email, password)
             .then(() => {
                 ctx.page.redirect('/');
-            });
+            })
+            .catch(error => {
+                alert(error);
+            })
     }
 
     ctx.render(loginTemplate(submitHandler));

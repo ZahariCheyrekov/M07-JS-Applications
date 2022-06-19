@@ -8,7 +8,7 @@ const saveUser = (user) => {
     }
 }
 
-const getUser = () => {
+export const getUser = () => {
     const serializedUser = localStorage.getItem('user');
 
     if (serializedUser) {
