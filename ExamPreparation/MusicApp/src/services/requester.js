@@ -1,15 +1,15 @@
-export const request = (methhod, url, data) => {
+export const request = (method, url, data) => {
     let options = {};
 
-    if (methhod != 'GET') {
+    if (method != 'GET') {
+        options.method = method;
         options.headers = {
             'Content-Type': 'applications/json'
         };
-
         options.body = JSON.stringify(data);
     }
 
-    fetch(url, options).then(res => res.json());
+    return fetch(url, options).then(res => res.json());
 }
 
 export const get = request.bind({}, 'GET');

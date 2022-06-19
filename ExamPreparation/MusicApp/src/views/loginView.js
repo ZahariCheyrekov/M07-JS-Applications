@@ -29,9 +29,10 @@ export const loginView = (ctx) => {
         ev.preventDefault();
 
         const { email, password } = Object.fromEntries(new FormData(ev.currentTarget));
-        authService.login(email, password).then(res => {
-            console.log('logged user'); 
-        })
+        authService.login(email, password)
+            .then(() => {
+                ctx.page.redirect('/');
+            });
     }
 
     ctx.render(loginTemplate(submitHandler));

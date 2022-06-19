@@ -4,11 +4,13 @@ const baseUrl = 'http://localhost:3030/users';
 
 const saveUser = (user) => {
     if (user.accessToken) {
-        localStorage.setItem(JSON.stringify(user));
+        localStorage.setItem('user', JSON.stringify(user));
     }
 }
 
-export const login = (email, password) => {
-    return request.post(`${baseUrl}/login`, { email, password })
-        .then(user => { saveUser(user) });
-}
+export const login = (email, password) =>
+    request.post(`${baseUrl}/login`, { email, password })
+        .then(user => {
+            saveUser(user);
+            return user;
+        });
