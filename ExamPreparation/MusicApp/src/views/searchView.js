@@ -1,8 +1,9 @@
 import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 
 import * as albumService from '../services/albumService.js';
+import { albumTemplate } from './templates/albumTemplate.js';
 
-const searchTemplate = (searchHandler) => html`
+const searchTemplate = (searchHandler, albums) => html`
     <section id="searchPage">
         <h1>Search by Name</h1>
     
@@ -12,30 +13,11 @@ const searchTemplate = (searchHandler) => html`
         </div>
     
         <h2>Results:</h2>
-    
-        <!--Show after click Search button-->
-        <div class="search-result">
-            <!--If have matches-->
-            <div class="card-box">
-                <img src="./images/BrandiCarlile.png">
-                <div>
-                    <div class="text-center">
-                        <p class="name">Name: In These Silent Days</p>
-                        <p class="artist">Artist: Brandi Carlile</p>
-                        <p class="genre">Genre: Low Country Sound Music</p>
-                        <p class="price">Price: $12.80</p>
-                        <p class="date">Release Date: October 1, 2021</p>
-                    </div>
-                    <div class="btn-group">
-                        <a href="#" id="details">Details</a>
-                    </div>
-                </div>
-            </div>
-    
-            <!--If there are no matches-->
-            <p class="no-result">No result.</p>
-        </div>
-    </section>
+        ${albums.length > 0
+            ? albums.map(x => albumTemplate(x))
+            : html`<p class="no-result">No result.</p>`}
+        </div >
+    </section >
 `;
 
 export const searchView = (ctx) => {
@@ -45,9 +27,9 @@ export const searchView = (ctx) => {
 
         albumService.search(searchInput.value)
             .then(albums => {
-
-            }); 
+                ctx.render(searchTemplate(searchHandler, albums));
+            });
     }
 
-    ctx.render(searchTemplate(searchHandler));
+    ctx.render(searchTemplate(searchHandler, []));
 }

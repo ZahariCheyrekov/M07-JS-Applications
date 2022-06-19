@@ -1,10 +1,12 @@
+import { html, nothing } from '../../../node_modules/lit-html/lit-html.js';
+
 const albumDetailes = (albumId) => html`
     <div class="btn-group">
         <a href="/albums/${albumId}" id="details">Details</a>
     </div>
 `;
 
-const albumTemplate = (album, withDetails = true) => html`
+export const albumTemplate = (album, withDetails = true) => html`
     <div class="card-box">
         <img src="${album.imgUrl}">
         <div>
