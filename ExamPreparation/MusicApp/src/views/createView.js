@@ -53,7 +53,7 @@ export const createView = (ctx) => {
             return;
         }
 
-        authService.create(albumData)
+        albumService.create(albumData)
             .then(() => {
                 ctx.page.redirect('/catalog');
             })
