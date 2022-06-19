@@ -3,5 +3,7 @@ import { renderNavigation } from './middlewares/renderMiddleware.js';
 import { homeView } from './views/homeView.js';
 
 page(renderNavigation);
+
 page('/', homeView);
+
 page.start();
