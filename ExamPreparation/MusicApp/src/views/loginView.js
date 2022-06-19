@@ -1,8 +1,8 @@
-import { html } from '../../node_modules/lit-html/lit-html.js';
+import { html, render } from '../../node_modules/lit-html/lit-html.js';
 
-const loginTemplate = () => html`
+const loginTemplate = (submitHandler) => html`
     <section id="loginPage">
-        <form>
+        <form @submit=${submitHandler}>
             <fieldset>
                 <legend>Login</legend>
     
@@ -21,3 +21,14 @@ const loginTemplate = () => html`
         </form>
     </section>
 `;
+
+export const loginView = (ctx) => {
+    const submitHandler = (ev) => {
+        ev.preventDefault();
+
+        const { email, password } = Object.fromEntries(new FormData(ev.currentTarget));
+        console.log(email, password);
+    }
+
+    ctx.render(loginTemplate(submitHandler));
+}
