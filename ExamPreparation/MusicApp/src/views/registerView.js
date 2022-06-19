@@ -34,6 +34,11 @@ export const registerView = (ctx) => {
         const formData = new FormData(ev.currentTarget);
         const { email, password, ['conf-pass']: repass } = Object.fromEntries(formData);
 
+        if (!email.trim() || !password.trim()) {
+            alert('All fields are required!');
+            return;
+        }
+
         if (repass != password) {
             alert('Passwords must match!');
             return;
