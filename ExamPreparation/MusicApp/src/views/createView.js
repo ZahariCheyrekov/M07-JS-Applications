@@ -2,11 +2,6 @@ import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 
 import * as albumService from '../services/albumService.js';
 
-const albumIsInvalid = (albumData) => {
-    const requiredFields = ['name', 'imgUrl', 'price', 'releaseDate', 'artist', 'genre', 'description'];
-    return requiredFields.some(x => !albumData[x]);
-}
-
 const createTemplate = (submitHandler) => html`
     <section class="createPage">
         <form @submit="${submitHandler}">

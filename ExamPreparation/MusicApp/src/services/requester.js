@@ -2,7 +2,7 @@ import * as authService from './authService.js';
 
 export const request = (method, url, data) => {
     let options = {};
-    let token = authService.getToken();
+    // let token = authService.getToken();
 
     if (method != 'GET') {
         options.method = method;
@@ -12,9 +12,9 @@ export const request = (method, url, data) => {
         options.body = JSON.stringify(data);
     }
 
-    if (token) {
-        options.headers['X-Authorization'] = token;
-    }
+    // if (token) {
+    //     options.headers['X-Authorization'] = token;
+    // }
 
     return fetch(url, options).then(res => res.json());
 }
