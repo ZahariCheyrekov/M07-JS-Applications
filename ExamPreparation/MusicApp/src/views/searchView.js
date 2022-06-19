@@ -3,7 +3,7 @@ import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 import * as albumService from '../services/albumService.js';
 import { albumTemplate } from './templates/albumTemplate.js';
 
-const searchTemplate = (searchHandler, albums) => html`
+const searchTemplate = (searchHandler, albums, isLogged) => html`
     <section id="searchPage">
         <h1>Search by Name</h1>
     
@@ -14,7 +14,7 @@ const searchTemplate = (searchHandler, albums) => html`
     
         <h2>Results:</h2>
         ${albums.length > 0
-            ? albums.map(x => albumTemplate(x))
+            ? albums.map(x => albumTemplate(x, isLogged))
             : html`<p class="no-result">No result.</p>`}
         </div >
     </section >
@@ -27,7 +27,8 @@ export const searchView = (ctx) => {
 
         albumService.search(searchInput.value)
             .then(albums => {
-                ctx.render(searchTemplate(searchHandler, albums));
+                const isLogged = Boolean(ctx.user);
+                ctx.render(searchTemplate(searchHandler, albums, isLogged));
             });
     }
 
