@@ -1,4 +1,6 @@
-import { html, render } from '../../node_modules/lit-html/lit-html.js';
+import { html } from '../../node_modules/lit-html/lit-html.js';
+
+import * as authService from '../services/authService.js';
 
 const loginTemplate = (submitHandler) => html`
     <section id="loginPage">
@@ -27,7 +29,9 @@ export const loginView = (ctx) => {
         ev.preventDefault();
 
         const { email, password } = Object.fromEntries(new FormData(ev.currentTarget));
-        console.log(email, password);
+        authService.login(email, password).then(res => {
+            console.log('logged user'); 
+        })
     }
 
     ctx.render(loginTemplate(submitHandler));
