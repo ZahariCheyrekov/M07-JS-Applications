@@ -6,6 +6,7 @@ const endpoints = {
     create: '/data/games',
     byId: '/data/games/',
     deleteById: '/data/games/',
+    update: '/data/games/',
 };
 
 export async function getRecent() {
@@ -22,6 +23,10 @@ export async function getAll() {
 
 export async function create(data) {
     return api.post(endpoints.create, data);
+}
+
+export async function update(id, data) {
+    return api.update(endpoints.update, data);
 }
 
 export async function deleteById(id) {
