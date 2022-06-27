@@ -2,8 +2,9 @@ import { html, nothing } from '../../node_modules/lit-html/lit-html.js'
 import * as gameService from '../services/gameService.js';
 import * as commentsService from '../services/commentsService.js';
 import { commentsView } from './commentsView.js';
+import { commentFormView } from './commentsFormView.js';
 
-const detailsTemplate = (game, commentsSection, onDelete) => html`
+const detailsTemplate = (game, commentsSection, commentForSection, onDelete) => html`
     <section id="game-details">
         <h1>Game Details</h1>
         <div class="info-section">
@@ -27,16 +28,7 @@ const detailsTemplate = (game, commentsSection, onDelete) => html`
     
         </div>
     
-        <!-- Bonus -->
-        <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) -->
-        <!-- <article class="create-comment">
-                              <label>Add new comment:</label>
-                              <form class="form">
-                                  <textarea name="comment" placeholder="Comment......"></textarea>
-                                  <input class="btn submit" type="submit" value="Add Comment">
-                              </form>
-                          </article> -->
-    
+        ${commentForSection}
     </section>
 `;
 
@@ -47,11 +39,13 @@ export async function detailsPage(ctx) {
         commentsView(gameId)
     ]);
 
+    const commentForSection = commentFormView(ctx, gameId);
+
     if (ctx.user) {
         game.isOwner = ctx.user._id == game._ownerId;
     }
 
-    ctx.render(detailsTemplate(game, commentsSection, onDelete));
+    ctx.render(detailsTemplate(game, commentsSection, commentForSection, onDelete));
 
     async function onDelete() {
         const result = confirm('Are you sure you want to delete this game?');
