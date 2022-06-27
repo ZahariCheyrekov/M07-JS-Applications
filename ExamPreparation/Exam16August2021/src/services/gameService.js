@@ -4,7 +4,7 @@ const endpoints = {
     recent: '/data/games?sortBy=_createdOn%20desc&distinct=category',
     games: '/data/games?sortBy=_createdOn%20desc',
     create: '/data/games',
-    byId: 'data/games/'
+    byId: '/data/games/'
 };
 
 export async function getRecent() {
