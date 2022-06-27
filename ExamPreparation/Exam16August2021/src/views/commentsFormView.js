@@ -12,8 +12,8 @@ const formTemplate = (onSubmit) => html`
     </article>
 `;
 
-export function commentFormView(ctx) {
-    if (ctx.user) {
+export function commentFormView(ctx, isOwner) {
+    if (ctx.user && !isOwner) {
         return formTemplate(createSubmitHandler(ctx, onSubmit));
     } else {
         return nothing;
