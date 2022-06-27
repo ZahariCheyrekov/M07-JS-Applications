@@ -8,6 +8,7 @@ import { homePage } from './views/homeView.js';
 import { loginPage } from './views/loginView.js';
 import { registerPage } from './views/registerView.js';
 
+import { logout } from './services/userService.js'
 page(addRender);
 
 page('/', homePage);
@@ -17,5 +18,11 @@ page('/register', registerPage);
 page('/create', createPage);
 page('/details/:id', detailsPage);
 page('/edit/:id', editPage);
+page('/logout', onLogout);
 
 page.start();
+
+function onLogout() {
+    logout();
+    page.redirect('/');
+}
