@@ -1,5 +1,6 @@
 import { html } from '../../node_modules/lit-html/lit-html.js'
 import { createSubmitHandler } from '../utils.js';
+import * as gameService from '../services/gameService.js';
 
 const createTemplate = (onSubmit) => html`
     <section id="create-page" class="auth">
@@ -37,6 +38,14 @@ async function onSubmit(ctx, data, event) {
         return;
     }
 
+    await gameService.create({
+        title: data.title,
+        category: data.category,
+        maxLevel: data.maxLevel,
+        imageUrl: data.imageUrl,
+        summary: data.summary
+    });
+    
     event.target.reset();
     ctx.page.redirect('/');
 }
