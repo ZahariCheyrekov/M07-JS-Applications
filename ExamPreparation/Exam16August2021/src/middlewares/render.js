@@ -1,6 +1,7 @@
 import { html, render } from '../../node_modules/lit-html/lit-html.js'
 
 const root = document.getElementById('main-content');
+const header = document.getElementById('games-play-header');
 
 const userNav = () => html`
     <div id="user">
@@ -20,7 +21,7 @@ const navTemplate = (user) => html`
     <h1><a class="home" href="/">GamesPlay</a></h1>
     <nav>
         <a href="/catalog">All games</a>
-        ${user ? userNav : noUserNav}
+        ${user ? userNav() : noUserNav()}
     </nav>
 `;
 
@@ -29,6 +30,7 @@ function ctxRender(content) {
 }
 
 export function addRender(ctx, next) {
+    render(navTemplate(ctx.user), header);
     ctx.render = ctxRender;
     next();
 }
