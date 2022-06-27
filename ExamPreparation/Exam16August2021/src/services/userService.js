@@ -1,5 +1,5 @@
 import * as api from '../api/api.js';
-import { clearUserData, setUserData } from '../utils';
+import { clearUserData, setUserData } from '../utils.js';
 
 const endopoints = {
     login: '/users/login',
