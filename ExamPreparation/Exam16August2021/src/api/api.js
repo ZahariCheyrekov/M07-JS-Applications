@@ -1,4 +1,4 @@
-import { clearUserData, getAccesToke } from '../util.js';
+import { clearUserData, getAccessToken } from '../utils.js'
 
 const host = 'http://localhost:3030';
 
@@ -8,7 +8,7 @@ async function request(method, url, data) {
         headers: {}
     };
 
-    const token = getAccesToke();
+    const token = getAccessToken();
     if (token) {
         options.headers['X-Authorization'] = token;
     }

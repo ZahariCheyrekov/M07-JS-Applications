@@ -2,7 +2,7 @@ export function getUserData() {
     return JSON.parse(localStorage.getItem('user'));
 }
 
-export function getAccesToke() {
+export function getAccessToken() {
     const user = getUserData();
 
     if (user) {
