@@ -24,7 +24,7 @@ export function createSubmitHandler(ctx, handler) {
     return function (event) {
         event.preventDefault();
 
-        const formData = Object.entries(new FormData(event.target));
+        const formData = Object.fromEntries(new FormData(event.target));
         handler(ctx, formData, event);
     }
 }

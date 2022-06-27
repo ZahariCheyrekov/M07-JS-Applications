@@ -19,7 +19,7 @@ const registerTemplate = () => html`
                 <input class="btn submit" type="submit" value="Register">
     
                 <p class="field">
-                    <span>If you already have profile click <a href="#">here</a></span>
+                    <span>If you already have profile click <a href="/login">here</a></span>
                 </p>
             </div>
         </form>
