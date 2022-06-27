@@ -9,6 +9,9 @@ import { loginPage } from './views/loginView.js';
 import { registerPage } from './views/registerView.js';
 
 import { logout } from './services/userService.js'
+import { addSession } from './middlewares/session.js';
+
+page(addSession);
 page(addRender);
 
 page('/', homePage);
