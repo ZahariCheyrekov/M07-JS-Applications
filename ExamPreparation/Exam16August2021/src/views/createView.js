@@ -1,8 +1,9 @@
 import { html } from '../../node_modules/lit-html/lit-html.js'
+import { createSubmitHandler } from '../utils.js';
 
-const createTemplate = () => html`
+const createTemplate = (onSubmit) => html`
     <section id="create-page" class="auth">
-        <form id="create">
+        <form @submit=${onSubmit} id="create">
             <div class="container">
     
                 <h1>Create Game</h1>
@@ -27,5 +28,15 @@ const createTemplate = () => html`
 `;
 
 export function createPage(ctx) {
-    ctx.render(createTemplate());
+    ctx.render(createTemplate(createSubmitHandler(ctx, onSubmit)));
+}
+
+async function onSubmit(ctx, data, event) {
+    if (Object.values(data).some(input => input.trim() == '')) {
+        alert('All fields are required!');
+        return;
+    }
+
+    event.target.reset();
+    ctx.page.redirect('/');
 }
