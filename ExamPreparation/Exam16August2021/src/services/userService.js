@@ -19,3 +19,7 @@ export async function register(email, password) {
     return result;
 }
 
+export async function logout() {
+    api.get(endopoints.logout);
+    clearUserData();
+}
