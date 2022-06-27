@@ -39,7 +39,7 @@ export async function detailsPage(ctx) {
         commentsView(gameId)
     ]);
 
-    const commentForSection = commentFormView(ctx, gameId);
+    const commentForSection = commentFormView(ctx);
 
     if (ctx.user) {
         game.isOwner = ctx.user._id == game._ownerId;
