@@ -1,5 +1,9 @@
 import page from '../node_modules/page/page.mjs';
+import { addRender } from './middlewares/render.js';
+import { homePage } from './views/homeView.js';
 
-page('/', () => console.log('asd'));
+page(addRender);
+
+page('/', homePage);
 
 page.start();
