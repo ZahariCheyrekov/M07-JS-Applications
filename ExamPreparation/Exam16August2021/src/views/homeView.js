@@ -15,7 +15,7 @@ const homeTemplate = () => html`
             <!-- Display div: with information about every game (if any) -->
             <div class="game">
                 <div class="image-wrap">
-                    <img src="./images/CoverFire.png">
+                    <img src="../../images/CoverFire.png">
                 </div>
                 <h3>Cover Fire</h3>
                 <div class="rating">
@@ -27,7 +27,7 @@ const homeTemplate = () => html`
             </div>
             <div class="game">
                 <div class="image-wrap">
-                    <img src="./images/ZombieLang.png">
+                    <img src="../../images/ZombieLang.png">
                 </div>
                 <h3>Zombie Lang</h3>
                 <div class="rating">
@@ -39,7 +39,7 @@ const homeTemplate = () => html`
             </div>
             <div class="game">
                 <div class="image-wrap">
-                    <img src="./images/MineCraft.png">
+                    <img src="../../images/MineCraft.png">
                 </div>
                 <h3>MineCraft</h3>
                 <div class="rating">
