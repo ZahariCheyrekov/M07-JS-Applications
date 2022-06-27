@@ -1,23 +1,19 @@
 import { html } from '../../node_modules/lit-html/lit-html.js'
+import * as gameService from '../services/gameService.js';
 
-const detailsTemplate = () => html`
+const detailsTemplate = (game) => html`
     <section id="game-details">
         <h1>Game Details</h1>
         <div class="info-section">
     
             <div class="game-header">
-                <img class="game-img" src="images/MineCraft.png" />
-                <h1>Bright</h1>
-                <span class="levels">MaxLevel: 4</span>
-                <p class="type">Action, Crime, Fantasy</p>
+                <img class="game-img" src="${game.imageUrl}" />
+                <h1>${game.title}</h1>
+                <span class="levels">MaxLevel: ${game.maxLevel}</span>
+                <p class="type">${game.category}</p>
             </div>
     
-            <p class="text">
-                Set in a world where fantasy creatures live side by side with humans. A human cop is forced to work
-                with an Orc to find a weapon everyone is prepared to kill for. Set in a world where fantasy
-                creatures live side by side with humans. A human cop is forced
-                to work with an Orc to find a weapon everyone is prepared to kill for.
-            </p>
+            <p class="text">${game.summary}</p>
     
             <!-- Bonus ( for Guests and Users ) -->
             <div class="details-comments">
@@ -55,6 +51,8 @@ const detailsTemplate = () => html`
     </section>
 `;
 
-export function detailsPage(ctx) {
-    ctx.render(detailsTemplate());
+export async function detailsPage(ctx) {
+    const gameId = ctx.params.id;
+    const game = await gameService.getById(gameId);
+    ctx.render(detailsTemplate(game));
 }
