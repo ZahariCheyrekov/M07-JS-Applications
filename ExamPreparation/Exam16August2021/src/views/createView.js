@@ -45,7 +45,7 @@ async function onSubmit(ctx, data, event) {
         imageUrl: data.imageUrl,
         summary: data.summary
     });
-    
+
     event.target.reset();
     ctx.page.redirect('/');
 }
