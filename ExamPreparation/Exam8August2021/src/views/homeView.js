@@ -1,4 +1,5 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
+import * as bookService from '../services/bookService.js';
 
 const homeTemplate = (books) => html`
     <section id="dashboard-page" class="dashboard">
@@ -22,7 +23,8 @@ const bookTemplate = (book) => html`
     </li>
 `;
 
-export const homeView = (ctx) => {
-    // conts books
-    ctx.render(homeTemplate(books));
+export async function homeView(ctx) {
+    const books = await bookService.getAllBooks();
+    console.log(books);
+    ctx.render(homeTemplate());
 }
