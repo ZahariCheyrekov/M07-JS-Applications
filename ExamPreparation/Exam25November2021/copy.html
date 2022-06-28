@@ -20,22 +20,22 @@
         <!-- Navigation -->
         <nav>
             <a href="#">All Memes</a>
-            <!-- Logged users -->
+             <!-- Logged users -->
             <div class="user">
-                <a href="/create">Create Meme</a>
+                <a href="#">Create Meme</a>
                 <div class="profile">
                     <span>Welcome, {email}</span>
                     <a href="#">My Profile</a>
-                    <a href="/logout">Logout</a>
+                    <a href="#">Logout</a>
                 </div>
             </div>
             <!-- Guest users -->
             <div class="guest">
                 <div class="profile">
-                    <a href="/login">Login</a>
-                    <a href="/register">Register</a>
+                    <a href="#">Login</a>
+                    <a href="#">Register</a>
                 </div>
-                <a class="active" href="/">Home Page</a>
+                <a class="active" href="#">Home Page</a>
             </div>
         </nav>
 
@@ -50,8 +50,8 @@
                 <img src="/images/welcome-meme.jpg" alt="meme">
                 <h2>Login to see our memes right away!</h2>
                 <div id="button-div">
-                    <a href="/login" class="button">Login</a>
-                    <a href="/register" class="button">Register</a>
+                    <a href="#" class="button">Login</a>
+                    <a href="#" class="button">Register</a>
                 </div>
             </div>
         </section>
@@ -104,7 +104,7 @@
         <section id="meme-feed">
             <h1>All Memes</h1>
             <div id="memes">
-                <!-- Display : All memes in database ( If any ) -->
+				<!-- Display : All memes in database ( If any ) -->
                 <div class="meme">
                     <div class="card">
                         <div class="info">
@@ -160,9 +160,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- Display : If there are no memes in database -->
-                <p class="no-memes">No memes in database.</p>
-            </div>
+				<!-- Display : If there are no memes in database -->
+				<p class="no-memes">No memes in database.</p>
+			</div>
         </section>
 
         <!-- Create Meme Page ( Only for logged users ) -->
@@ -224,7 +224,7 @@
                     <!-- Buttons Edit/Delete should be displayed only for creator of this meme  -->
                     <a class="button warning" href="#">Edit</a>
                     <button class="button danger">Delete</button>
-
+                    
                 </div>
             </div>
         </section>
@@ -241,7 +241,7 @@
             </article>
             <h1 id="user-listings-title">User Memes</h1>
             <div class="user-meme-listings">
-                <!-- Display : All created memes by this user (If any) -->
+                <!-- Display : All created memes by this user (If any) --> 
                 <div class="user-meme">
                     <p class="user-meme-title">Java Script joke</p>
                     <img class="userProfileImage" alt="meme-img" src="/images/1.png">
@@ -253,7 +253,7 @@
                     <a class="button" href="#">Details</a>
                 </div>
 
-                <!-- Display : If user doesn't have own memes  -->
+                <!-- Display : If user doesn't have own memes  --> 
                 <p class="no-memes">No memes in database.</p>
             </div>
         </section>
