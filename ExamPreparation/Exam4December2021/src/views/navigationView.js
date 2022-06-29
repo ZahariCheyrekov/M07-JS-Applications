@@ -24,6 +24,5 @@ const userLinks = html`
 `;
 
 export const navigationView = (ctx) => {
-    console.log(ctx.user);
     return navigationTemplate(ctx.user);
 }

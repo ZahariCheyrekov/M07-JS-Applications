@@ -37,8 +37,8 @@ export const loginView = (ctx) => {
             return;
         }
 
-        requestService.login(email, password);
-        ctx.page.redirect('/');
+        requestService.login(email, password)
+            .then(() => ctx.page.redirect('/'));
     }
 
     ctx.render(loginTemplate(onSubmit));
