@@ -47,7 +47,8 @@ export const registerView = (ctx) => {
         }
 
         requestService.register(email, password)
-            .then(() => ctx.page.redirect('/'));
+            .then(() => ctx.page.redirect('/'))
+            .catch(error => alert(error));
     }
 
     ctx.render(registerTemplate(onSubmit));
