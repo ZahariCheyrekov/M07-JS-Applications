@@ -7,3 +7,7 @@ export const formValidator = (...data) => {
 
     return true;
 }
+
+export const passwordValidator = (pass, repass) => {
+    return pass.trim() == repass.trim();
+}
