@@ -2,6 +2,7 @@ export const request = (method, url, data) => {
     let options = {};
 
     if (method != 'GET') {
+        options.method = method;
         options.headers = {
             'Content-Type': 'applications/json'
         };

@@ -1,6 +1,6 @@
 import * as request from './requester.js';
 
-const baseUrl = 'htttp://localhost:3030/users';
+const baseUrl = 'http://localhost:3030/users';
 
 const saveUser = (user) => {
     if (user.accessToken) {
