@@ -1,4 +1,5 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
+import * as validator from '../validators/formValidator.js';
 
 const registerTemplate = (onSubmit) => html`    
     <section id="registerPage">
@@ -28,6 +29,21 @@ const registerTemplate = (onSubmit) => html`
 export const registerView = (ctx) => {
     const onSubmit = (ev) => {
         ev.preventDefault();
+
+        const { email, password, ['conf-pass']: repass } = Object.fromEntries(new FormData(ev.currentTarget));
+        const areFieldsValid = validator.formValidator(email, password, repass);
+
+        if (!areFieldsValid) {
+            alert('All fields are required!')
+            return;
+        }
+
+        const isValidPass = validator.passwordValidator(password, repass);
+
+        if (!isValidPass) {
+            alert('Passwords must match!');
+            return;
+        }
     }
 
     ctx.render(registerTemplate(onSubmit));
