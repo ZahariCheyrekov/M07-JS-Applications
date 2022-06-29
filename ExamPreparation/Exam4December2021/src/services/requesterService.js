@@ -25,3 +25,5 @@ export const getAlbumById = (albumId) => request.get(`${albumIdUrl}/` + albumId)
 export const createAlbum = (data) => request.post(albumIdUrl, data);
 
 export const edit = (albumId, data) => request.put(`${albumIdUrl}/${albumId}`, data);
+
+export const removeAlbum = (albumId) => request.del(`${albumIdUrl}/${albumId}`);

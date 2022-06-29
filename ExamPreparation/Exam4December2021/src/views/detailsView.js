@@ -26,7 +26,7 @@ const albumTemplate = (album, isOwner) => html`
         ${isOwner ? html`
         <div class="actionBtn">
             <a href="/albums/${album._id}/edit" class="edit">Edit</a>
-            <a href="#" class="remove">Delete</a>
+            <a href="/albums/${album._id}/delete" class="remove">Delete</a>
         </div>`: nothing}
     </div>
 `;

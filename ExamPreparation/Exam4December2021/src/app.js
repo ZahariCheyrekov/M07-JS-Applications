@@ -6,6 +6,7 @@ import { renderContentMiddleware } from './middlewares/renderMiddleware.js';
 
 import { catalogView } from './views/catalogView.js';
 import { createView } from './views/createView.js';
+import { deleteView } from './views/deleteView.js';
 import { detailsView } from './views/detailsView.js';
 import { editView } from './views/editView.js';
 import { homeView } from './views/homeView.js';
@@ -25,5 +26,6 @@ page('/create', createView);
 page('/catalog', catalogView);
 page('/albums/:albumId', detailsView);
 page('/albums/:albumId/edit', editView);
+page('/albums/:albumId/delete', deleteView);
 
 page.start();
