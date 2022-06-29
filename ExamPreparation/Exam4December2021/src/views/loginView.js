@@ -1,8 +1,10 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
+import * as validator from '../validators/formValidator.js';
+import * as requestService from '../services/requesterService.js';
 
-const loginTemplate = () => html`
+const loginTemplate = (onSubmit) => html`
     <section id="loginPage">
-        <form>
+        <form @submit=${onSubmit}>
             <fieldset>
                 <legend>Login</legend>
     
@@ -15,7 +17,7 @@ const loginTemplate = () => html`
                 <button type="submit" class="login">Login</button>
     
                 <p class="field">
-                    <span>If you don't have profile click <a href="#">here</a></span>
+                    <span>If you don't have profile click <a href="/register">here</a></span>
                 </p>
             </fieldset>
         </form>
@@ -23,5 +25,21 @@ const loginTemplate = () => html`
 `;
 
 export const loginView = (ctx) => {
-    ctx.render();
+    const onSubmit = (ev) => {
+        ev.preventDefault();
+
+        const { email, password } = Object.fromEntries(new FormData(ev.currentTarget));
+
+        const isValid = validator.formValidator(email, password);
+
+        if (!isValid) {
+            alert('All fields are required!');
+            return;
+        }
+
+        requestService.login(email, password);
+        ctx.page.redirect('/');
+    }
+
+    ctx.render(loginTemplate(onSubmit));
 }
