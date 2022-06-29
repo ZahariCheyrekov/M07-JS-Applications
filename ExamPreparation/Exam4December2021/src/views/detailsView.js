@@ -1,34 +1,40 @@
-import { html } from '../../node_modules/lit-html/lit-html.js';
+import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
+import * as requestService from '../services/requesterService.js';
 
-const detailsTemplate = () => html`
+const detailsTemplate = (album, user) => html`
     <section id="detailsPage">
         <div class="wrapper">
             <div class="albumCover">
-                <img src="./images/Lorde.jpg">
+                <img src="${album.imgUrl}">
             </div>
-            <div class="albumInfo">
-                <div class="albumText">
-    
-                    <h1>Name: Melodrama</h1>
-                    <h3>Artist: Lorde</h3>
-                    <h4>Genre: Pop Music</h4>
-                    <h4>Price: $7.33</h4>
-                    <h4>Date: June 16, 2017</h4>
-                    <p>Description: Melodrama is the second studio album by New Zealand singer-songwriter Lorde.
-                        It was released on 16 June 2017 by Lava and Republic Records and distributed through
-                        Universal.</p>
-                </div>
-    
-                <!-- Only for registered user and creator of the album-->
-                <div class="actionBtn">
-                    <a href="#" class="edit">Edit</a>
-                    <a href="#" class="remove">Delete</a>
-                </div>
-            </div>
+            ${albumTemplate(album, user)}
         </div>
     </section>
 `;
 
+const albumTemplate = (album, user) => html`
+    <div class="albumInfo">
+        <div class="albumText">
+            <h1>Name: ${album.name}</h1>
+            <h3>Artist: ${album.artist}</h3>
+            <h4>Genre: ${album.genre}</h4>
+            <h4>Price: $${album.price}</h4>
+            <h4>Date: ${album.releaseDate}</h4>
+            <p>${album.description}</p>
+        </div>
+    
+        ${user ? html`
+        <div class="actionBtn">
+            <a href="#" class="edit">Edit</a>
+            <a href="#" class="remove">Delete</a>
+        </div>`: nothing}
+    
+    </div>
+`;
+
 export const detailsView = (ctx) => {
-    ctx.render(detailsTemplate());
+    requestService.getAlbumById(ctx.params.id)
+        .then(album => {
+            ctx.render(detailsTemplate(album, ctx.user));
+        });
 }
