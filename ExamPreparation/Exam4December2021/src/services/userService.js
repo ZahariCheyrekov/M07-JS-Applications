@@ -12,3 +12,7 @@ export const getUser = () => {
         return user;
     }
 }
+
+export const removeUser = () => localStorage.removeItem('user');
+
+export const getAccessToken = () => getUser()?.accessToken;
