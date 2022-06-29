@@ -14,5 +14,5 @@ const homeTemplate = () => html`
 `;
 
 export const homeView = (ctx) => {
-    return homeTemplate();
+    ctx.render(homeTemplate());
 }

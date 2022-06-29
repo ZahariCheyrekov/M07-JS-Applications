@@ -7,3 +7,4 @@ export const navigationMiddleware = (ctx, next) => {
     render(navigationView(ctx), headerRoot);
     next();
 }
+
