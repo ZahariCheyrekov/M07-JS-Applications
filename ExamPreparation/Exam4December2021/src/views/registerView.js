@@ -1,5 +1,6 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
 import * as validator from '../validators/formValidator.js';
+import * as requestService from '../services/requesterService.js';
 
 const registerTemplate = (onSubmit) => html`    
     <section id="registerPage">
@@ -44,6 +45,9 @@ export const registerView = (ctx) => {
             alert('Passwords must match!');
             return;
         }
+
+        requestService.register(email, password)
+            .then(() => ctx.page.redirect('/'));
     }
 
     ctx.render(registerTemplate(onSubmit));
