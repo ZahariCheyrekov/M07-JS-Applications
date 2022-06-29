@@ -3,6 +3,7 @@ import * as userService from './userService.js';
 
 const baseUrl = 'http://localhost:3030/users';
 const albumsUrl = 'http://localhost:3030/data/albums?sortBy=_createdOn%20desc&distinct=name'
+const albumIdUrl = 'http://localhost:3030/data/albums/'
 
 export const login = (email, password) =>
     request.post(`${baseUrl}/login`, { email, password })
@@ -19,3 +20,6 @@ export const register = (email, password) =>
 
 export const getAllAlbums = () =>
     request.get(albumsUrl);
+
+export const getAlbumById = (albumId) =>
+    request.get(`${albumIdUrl}` + albumId);
