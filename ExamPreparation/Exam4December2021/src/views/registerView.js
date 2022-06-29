@@ -1,6 +1,6 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
 
-const loginTemplate = (onSubmit) => html`    
+const registerTemplate = (onSubmit) => html`    
     <section id="registerPage">
         <form @submit=${onSubmit}>
             <fieldset>
@@ -25,7 +25,7 @@ const loginTemplate = (onSubmit) => html`
     </section>
 `;
 
-export const loginView = (ctx) => {
+export const registerView = (ctx) => {
     const onSubmit = (ev) => {
         ev.preventDefault();
     }

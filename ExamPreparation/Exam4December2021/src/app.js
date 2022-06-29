@@ -15,5 +15,6 @@ page(renderContentMiddleware);
 page('/', homeView);
 page('/login', loginView);
 page('/logout', logoutView);
+page('/logout', );
 
 page.start();
