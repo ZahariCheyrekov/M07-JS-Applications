@@ -1,18 +1,18 @@
 import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 import * as requestService from '../services/requesterService.js';
 
-const detailsTemplate = (album, user) => html`
+const detailsTemplate = (album, isOwner) => html`
     <section id="detailsPage">
         <div class="wrapper">
             <div class="albumCover">
                 <img src="${album.imgUrl}">
             </div>
-            ${albumTemplate(album, user)}
+            ${albumTemplate(album, isOwner)}
         </div>
     </section>
 `;
 
-const albumTemplate = (album, user) => html`
+const albumTemplate = (album, isOwner) => html`
     <div class="albumInfo">
         <div class="albumText">
             <h1>Name: ${album.name}</h1>
@@ -23,7 +23,7 @@ const albumTemplate = (album, user) => html`
             <p>${album.description}</p>
         </div>
     
-        ${user ? html`
+        ${isOwner ? html`
         <div class="actionBtn">
             <a href="#" class="edit">Edit</a>
             <a href="#" class="remove">Delete</a>
@@ -35,6 +35,7 @@ const albumTemplate = (album, user) => html`
 export const detailsView = (ctx) => {
     requestService.getAlbumById(ctx.params.id)
         .then(album => {
-            ctx.render(detailsTemplate(album, ctx.user));
+            const isOwner = ctx.params.id == album.id;
+            ctx.render(detailsTemplate(album, isOwner));
         });
 }
