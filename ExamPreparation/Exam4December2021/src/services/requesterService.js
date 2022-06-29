@@ -2,6 +2,12 @@ import * as request from './requester.js';
 
 const baseUrl = 'htttp://localhost:3030/users';
 
-export const login = (email, password) => {
-    return request.post(`${baseUrl}/login`, { email, password });
+const saveUser = (user) => {
+    if (user.accessToken) {
+        localStorage.setItem('user', JSON.stringify(user));
+    }
 }
+
+export const login = (email, password) =>
+    request.post(`${baseUrl}/login`, { email, password })
+        .then(user => saveUser(user));
