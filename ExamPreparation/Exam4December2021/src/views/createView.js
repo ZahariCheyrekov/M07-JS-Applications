@@ -1,4 +1,6 @@
-import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
+import { html, render } from '../../node_modules/lit-html/lit-html.js';
+import * as requestService from '../services/requesterService.js';
+import * as validator from '../validators/formValidator.js';
 
 const createTemplate = (onSubmit) => html`
     <section class="createPage">
@@ -38,6 +40,23 @@ const createTemplate = (onSubmit) => html`
 export const createView = (ctx) => {
     const onSubmit = (ev) => {
         ev.preventDefault();
+
+        const data = Object.fromEntries(new FormData(ev.currentTarget));
+
+        const areValidInputs = validator.createValidator(Object.values(data));
+
+        if (!areValidInputs) {
+            alert('All fields are required!');
+            return;
+        }
+
+        requestService.createAlbum(data)
+            .then(() => {
+                ctx.page.redirect('/catalog');
+            })
+            .catch(error => {
+                alert(error);
+            });
     }
 
     ctx.render(createTemplate(onSubmit));

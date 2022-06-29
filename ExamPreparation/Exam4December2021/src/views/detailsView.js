@@ -33,9 +33,9 @@ const albumTemplate = (album, isOwner) => html`
 `;
 
 export const detailsView = (ctx) => {
-    requestService.getAlbumById(ctx.params.id)
+    requestService.getAlbumById(ctx.params.albumId)
         .then(album => {
-            const isOwner = ctx.params.id == album.id;
+            const isOwner = ctx.user._id == album._ownerId;
             ctx.render(detailsTemplate(album, isOwner));
         });
 }

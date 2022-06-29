@@ -8,17 +8,16 @@ export const request = (method, url, data) => {
         options = {
             method,
             headers: {
-                'content-type': 'application/json'
+                'Content-Type': 'application/json'
             }
+        }
+
+        if (token) {
+            options.headers['X-Authorization'] = token;
         }
     }
 
-    if (token) {
-        options.headers = {
-            ...options.headers,
-            'X-Authorization': token
-        }
-    }
+  
 
     if (data) {
         options.body = JSON.stringify(data);

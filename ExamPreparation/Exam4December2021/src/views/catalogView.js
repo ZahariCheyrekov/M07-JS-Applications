@@ -25,7 +25,7 @@ const albumTemplate = (album, user) => html`
     
             ${user ? html`
             <div class="btn-group">
-                <a href="/details/albums/${album._id}" id="details">Details</a>
+                <a href="/albums/${album._id}" id="details">Details</a>
             </div>`: nothing}
         </div>
     </div>
