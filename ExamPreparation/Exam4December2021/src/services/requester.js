@@ -15,10 +15,10 @@ export const request = (method, url, data) => {
         if (token) {
             options.headers['X-Authorization'] = token;
         }
-    }
 
-    if (data) {
-        options.body = JSON.stringify(data);
+        if (data) {
+            options.body = JSON.stringify(data);
+        }
     }
 
     return fetch(url, options)

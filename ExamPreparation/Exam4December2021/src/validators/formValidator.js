@@ -1,5 +1,6 @@
-export const formValidator = (data) => {
+export const formValidator = (...data) => {
     for (const value of data) {
+        console.log(data)
         if (!value.trim()) {
             return false;
         }
