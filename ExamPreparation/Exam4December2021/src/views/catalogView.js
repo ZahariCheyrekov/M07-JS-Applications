@@ -11,7 +11,7 @@ const catalogTemplate = (albums, user) => html`
     </section>
 `;
 
-const albumTemplate = (album, user) => html`
+export const albumTemplate = (album, user) => html`
     <div class="card-box">
         <img src="${album.imgUrl}">
         <div>
