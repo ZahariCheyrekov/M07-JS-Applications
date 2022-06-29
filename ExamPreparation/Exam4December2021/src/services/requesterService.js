@@ -27,3 +27,5 @@ export const createAlbum = (data) => request.post(albumIdUrl, data);
 export const edit = (albumId, data) => request.put(`${albumIdUrl}/${albumId}`, data);
 
 export const removeAlbum = (albumId) => request.del(`${albumIdUrl}/${albumId}`);
+
+export const searchAlbums = (searchValue) => request.get(`${albumIdUrl}?where=name%20LIKE%20%22${searchValue}%22`);
