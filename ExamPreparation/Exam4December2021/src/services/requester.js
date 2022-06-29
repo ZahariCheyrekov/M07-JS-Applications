@@ -17,8 +17,6 @@ export const request = (method, url, data) => {
         }
     }
 
-  
-
     if (data) {
         options.body = JSON.stringify(data);
     }

@@ -1,42 +1,44 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
+import * as requestService from '../services/requesterService.js';
 import { albumTemplate } from './catalogView.js';
 
-const searchTemplate = (albums) => html`
+const searchTemplate = (albums, user, onClick) => html`
     <section id="searchPage">
         <h1>Search by Name</h1>
     
         <div class="search">
             <input id="search-input" type="text" name="search" placeholder="Enter desired albums's name">
-            <button class="button-list">Search</button>
+            <button @click=${onClick} class="button-list">Search</button>
         </div>
     
         <h2>Results:</h2>
     
-        <!--Show after click Search button-->
         <div class="search-result">
-            <!--If have matches-->
-            <div class="card-box">
-                <img src="./images/BrandiCarlile.png">
-                <div>
-                    <div class="text-center">
-                        <p class="name">Name: In These Silent Days</p>
-                        <p class="artist">Artist: Brandi Carlile</p>
-                        <p class="genre">Genre: Low Country Sound Music</p>
-                        <p class="price">Price: $12.80</p>
-                        <p class="date">Release Date: October 1, 2021</p>
-                    </div>
-                    <div class="btn-group">
-                        <a href="#" id="details">Details</a>
-                    </div>
-                </div>
-            </div>
-    
-            <!--If there are no matches-->
-            <p class="no-result">No result.</p>
+            ${albums.length > 0
+             ? albums.map(x => albumTemplate(x, user))
+             : html`<p class="no-result">No result.</p>`
+            }
         </div>
     </section>
 `;
 
 export const searchView = (ctx) => {
-    ctx.render(searchTemplate());
+    const onClick = (ev) => {
+        ev.preventDefault();
+
+        const searchInputField = document.getElementById('search-input');
+        const searchValue = searchInputField.value.trim();
+
+        if (!searchValue) {
+            alert('Enter album name!');
+            return;
+        }
+        
+        requestService.searchAlbums(searchValue)
+            .then(albums => {
+                ctx.render(searchTemplate(albums, ctx.user, onClick));
+            });
+    }
+
+    ctx.render(searchTemplate([], ctx.user, onClick));
 } 
