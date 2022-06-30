@@ -1,6 +1,8 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
+
 import { inputValidator } from '../validators/inputValidator.js';
-import * as alert from '../messages/alertMessages.js';
+import * as alertConsole from '../messages/alertMessages.js';
+import * as requestService from '../services/requesterService.js';
 
 const loginTemplate = (onSubmit) => html`
     <section id="login-page" class="login">
@@ -34,11 +36,12 @@ export const loginView = (ctx) => {
         const areFieldsEmpty = inputValidator([email, password]);
 
         if (areFieldsEmpty) {
-            alert.ALL_FIELDS_ARE_REQUIRED_MESSAGE();
+            alertConsole.ALL_FIELDS_ARE_REQUIRED_MESSAGE();
             return;
         }
 
-        
+        requestService.loginUser(email, password)
+            .then(() => ctx.page.redirect('/'));
     }
 
     ctx.render(loginTemplate(onSubmit));

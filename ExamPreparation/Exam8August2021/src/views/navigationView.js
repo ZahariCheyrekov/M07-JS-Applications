@@ -1,17 +1,17 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
 
-const navigationTemplate = (user) => html`
+const navigationTemplate = (user, ctx) => html`
     <nav class="navbar">
         <section class="navbar-dashboard">
             <a href="/">Dashboard</a>
-            ${user ? userLinks() : guestLinks()}
+            ${user ? userLinks(ctx) : guestLinks()}
         </section>
     </nav>
 `;
 
-const userLinks = (email) => html`
+const userLinks = (ctx) => html`
     <div id="user">
-        <span>Welcome, ${email}</span>
+        <span>Welcome, ${ctx.user.email}</span>
         <a class="button" href="#">My Books</a>
         <a class="button" href="/create">Add Book</a>
         <a class="button" href="/logout">Logout</a>
@@ -26,5 +26,5 @@ const guestLinks = () => html`
 `;
 
 export const navigationView = (ctx) => {
-    return navigationTemplate(ctx.user);
+    return navigationTemplate(ctx.user, ctx);
 }
