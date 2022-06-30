@@ -22,3 +22,5 @@ export const getAllBooks = () => request.get(allBooksUrl);
 export const getBookById = (bookId) => request.get(`${createBookUrl}/${bookId}`);
 
 export const createBook = (data) => request.post(createBookUrl, data);
+
+export const editBook = (bookId, data) => request.put(`${createBookUrl}/${bookId}`, data);
