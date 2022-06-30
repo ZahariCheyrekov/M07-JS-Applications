@@ -3,7 +3,7 @@ import { html } from '../../node_modules/lit-html/lit-html.js';
 const navigationTemplate = (user) => html`
     <nav class="navbar">
         <section class="navbar-dashboard">
-            <a href="#">Dashboard</a>
+            <a href="/">Dashboard</a>
             ${user ? userLinks() : guestLinks()}
         </section>
     </nav>
