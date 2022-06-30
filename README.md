@@ -52,3 +52,8 @@
 ## <p id="ROUT">Routing</p>
 - Routing Concepts
 - Navigation and History
+
+## <p id="MODAPP">Modular Applications</p>
+- Component Approach
+- Encapsulating Functionality
+- Isolating State
