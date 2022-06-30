@@ -43,3 +43,8 @@
 - MPackages
 - Dependencies
 - Integration Testing
+
+## <p id="CSR">Client Side Rendering</p>
+- Templating Concepts
+- Simple Templating
+- Templating Engines
