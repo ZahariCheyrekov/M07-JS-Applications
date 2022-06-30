@@ -20,7 +20,6 @@ const navigationTemplate = () => html`
     </nav>
 `;
 
-
 export const navigationView = (ctx) => {
     return navigationTemplate(ctx);
 }
