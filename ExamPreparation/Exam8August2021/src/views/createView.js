@@ -4,7 +4,6 @@ import * as alertConsole from '../messages/alertMessages.js';
 import * as requestService from '../services/requesterService.js';
 
 import { inputValidator } from '../validators/inputValidator.js';
-import { passwordValidator } from '../validators/passwordValidator.js';
 
 const createTemplate = (onSubmit) => html`
     <section id="create-page" class="create">
