@@ -26,3 +26,9 @@
 - Asynchronous Programming
 - Promises Deep Dive
 - Async/Await
+
+## <p id="RDA">Remote Data and Authentication</p>
+- Managing Remote Data
+- HTML Forms
+- CRUD Operations
+- User Authentication
