@@ -17,6 +17,9 @@ export const logout = () => request.get(`${baseUrl}/logout`,
     { headers: { 'X-Authorization': userService.getAccessToken() } })
     .then(() => userService.removeUser());
 
+export const getAllBooksByUserId = (userId) =>
+    request.get(`http://localhost:3030/data/books?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`);
+
 export const getAllBooks = () => request.get(allBooksUrl);
 
 export const getBookById = (bookId) => request.get(`${createBookUrl}/${bookId}`);
