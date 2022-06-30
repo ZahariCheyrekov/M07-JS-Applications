@@ -12,7 +12,7 @@ const navigationTemplate = (user, ctx) => html`
 const userLinks = (ctx) => html`
     <div id="user">
         <span>Welcome, ${ctx.user.email}</span>
-        <a class="button" href="#">My Books</a>
+        <a class="button" href="/data/books">My Books</a>
         <a class="button" href="/create">Add Book</a>
         <a class="button" href="/logout">Logout</a>
     </div>

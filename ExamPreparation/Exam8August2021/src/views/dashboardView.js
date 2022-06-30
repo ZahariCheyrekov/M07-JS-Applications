@@ -15,7 +15,7 @@ const dashboardTemplate = (books) => html`
     </section>
 `;
 
-const bookTemplate = (book) => html`
+export const bookTemplate = (book) => html`
     <li class="otherBooks">
         <h3>${book.title}</h3>
         <p>Type: ${book.type}</p>
