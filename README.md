@@ -32,3 +32,9 @@
 - HTML Forms
 - CRUD Operations
 - User Authentication
+
+## <p id="SPA">Single Page Applications</p>
+- SPA Concepts
+- Multi-Screen Application
+- Changing Content Dynamically
+
