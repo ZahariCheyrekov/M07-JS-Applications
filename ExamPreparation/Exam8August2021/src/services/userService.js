@@ -2,7 +2,8 @@ export const getUser = () => {
     const serializedUser = localStorage.getItem('user');
 
     if (serializedUser) {
-        return JSON.parse(serializedUser);
+        const user = JSON.parse(serializedUser);
+        return user;
     }
 }
 

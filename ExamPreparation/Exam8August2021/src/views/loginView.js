@@ -31,7 +31,7 @@ export const loginView = (ctx) => {
     const onSubmit = (ev) => {
         ev.preventDefault();
 
-        const { email, password } = Object.fromEntries(new FormData(ev.currentTarget));
+        let { email, password } = Object.fromEntries(new FormData(ev.currentTarget));
 
         const areFieldsEmpty = inputValidator([email, password]);
 
@@ -42,6 +42,7 @@ export const loginView = (ctx) => {
 
         requestService.loginUser(email, password)
             .then(() => ctx.page.redirect('/'));
+
     }
 
     ctx.render(loginTemplate(onSubmit));
