@@ -1,1 +1,5 @@
-console.log('Hello, my little friend!');
+import page from '../node_modules/page/page.mjs';
+
+
+
+page.start();
