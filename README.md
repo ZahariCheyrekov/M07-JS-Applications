@@ -57,3 +57,10 @@
 - Component Approach
 - Encapsulating Functionality
 - Isolating State
+
+## <p id="WWCOMP">Workshop: Web Components</p>
+- What are Web Components?
+- Creating Elements and Shadow DOM
+- HTML Templates and Slots
+- Component Lifecycle
+- Extending HTML Elements
