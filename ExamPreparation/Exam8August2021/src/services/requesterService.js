@@ -19,4 +19,6 @@ export const logout = () => request.get(`${baseUrl}/logout`,
 
 export const getAllBooks = () => request.get(allBooksUrl);
 
+export const getBookById = (bookId) => request.get(`${createBookUrl}/${bookId}`);
+
 export const createBook = (data) => request.post(createBookUrl, data);
