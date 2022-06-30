@@ -9,15 +9,17 @@ import { loginView } from './views/loginView.js';
 import { logoutHandler } from './handlers/logoutHandler.js';
 import { registerView } from './views/registerView.js';
 import { createView } from './views/createView.js';
+import { detailsView } from './views/detailsView.js';
 
 page(authMiddleware);
 page(navigationMiddleware);
 page(renderMiddleware);
 
 page('/', dashboardView);
-page('/login', loginView);
+page('/login', loginView);3
 page('/logout', logoutHandler);
 page('/register', registerView);
 page('/create', createView);
+page('/data/books/:id', detailsView);
 
 page.start();
