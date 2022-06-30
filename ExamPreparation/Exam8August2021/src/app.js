@@ -11,6 +11,7 @@ import { registerView } from './views/registerView.js';
 import { createView } from './views/createView.js';
 import { detailsView } from './views/detailsView.js';
 import { editView } from './views/editBookView.js';
+import { deleteHandler } from './handlers/deleteHandler.js';
 
 page(authMiddleware);
 page(navigationMiddleware);
@@ -23,5 +24,6 @@ page('/register', registerView);
 page('/create', createView);
 page('/data/books/:id', detailsView);
 page('/data/books/:id/edit', editView);
+page('/data/books/:id/delete', deleteHandler);
 
 page.start();
