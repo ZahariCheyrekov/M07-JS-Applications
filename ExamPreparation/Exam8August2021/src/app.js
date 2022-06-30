@@ -19,7 +19,7 @@ page(navigationMiddleware);
 page(renderMiddleware);
 
 page('/', dashboardView);
-page('/login', loginView); 3
+page('/login', loginView);
 page('/logout', logoutHandler);
 page('/register', registerView);
 page('/create', createView);
