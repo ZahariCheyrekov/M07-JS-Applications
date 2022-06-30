@@ -3,6 +3,7 @@ import * as userService from '../services/userService.js';
 
 const baseUrl = 'http://localhost:3030/users';
 const allBooksUrl = 'http://localhost:3030/data/books?sortBy=_createdOn%20desc';
+const createBookUrl = 'http://localhost:3030/data/books';
 
 export const loginUser = (email, password) =>
     request.post(`${baseUrl}/login`, { email, password })
@@ -17,3 +18,5 @@ export const logout = () => request.get(`${baseUrl}/logout`,
     .then(() => userService.removeUser());
 
 export const getAllBooks = () => request.get(allBooksUrl);
+
+export const createBook = (data) => request.post(createBookUrl, data);
