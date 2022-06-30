@@ -1,22 +1,21 @@
 import * as userService from '../services/userService.js';
 
 export const request = (method, url, data) => {
-    let options = {};
-    let token = userService.getAccessToken();
+    const options = {
+        method,
+        headers: {},
+    }
+    
+    const token = userService.getAccessToken();
 
-    if (method != 'GET') {
-        options = {
-            method,
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
+    if (token) {
+        options.headers['X-Authorization'] = token;
+    }
 
-        if (token) {
-            options.headers['X-Authorization'] = token;
-        }
+    if (data) {
+        options.headers['Content-Type'] = 'application/json';
 
-        if (data) {
+        if (method != 'GET') {
             options.body = JSON.stringify(data);
         }
     }
