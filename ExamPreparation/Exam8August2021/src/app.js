@@ -10,16 +10,18 @@ import { logoutHandler } from './handlers/logoutHandler.js';
 import { registerView } from './views/registerView.js';
 import { createView } from './views/createView.js';
 import { detailsView } from './views/detailsView.js';
+import { editView } from './views/editBookView.js';
 
 page(authMiddleware);
 page(navigationMiddleware);
 page(renderMiddleware);
 
 page('/', dashboardView);
-page('/login', loginView);3
+page('/login', loginView); 3
 page('/logout', logoutHandler);
 page('/register', registerView);
 page('/create', createView);
 page('/data/books/:id', detailsView);
+page('/data/books/:id/edit', editView);
 
 page.start();

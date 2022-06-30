@@ -10,7 +10,7 @@ const detailsTemplate = (book, isOwner) => html`
             <div class="actions">
     
                 ${isOwner ? html`
-                <a class="button" href="#">Edit</a>
+                <a class="button" href="/data/books/${book._id}/edit">Edit</a>
                 <a class="button" href="#">Delete</a>
                 ` : nothing}
     
