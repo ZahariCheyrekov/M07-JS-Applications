@@ -38,3 +38,8 @@
 - Multi-Screen Application
 - Changing Content Dynamically
 
+## <p id="ARCHT">Architecture and Testing</p>
+- Modular Applications
+- MPackages
+- Dependencies
+- Integration Testing
