@@ -3,6 +3,7 @@ import * as userService from './userService.js';
 
 const url = 'http://localhost:3030';
 const baseUrl = `${url}/users`;
+const createUrl = `${url}/data/memes`;
 
 export const login = (email, password) =>
     request.post(`${baseUrl}/login`, { email, password })
@@ -15,3 +16,5 @@ export const register = (data) =>
 export const logout = () =>
     request.get(`${baseUrl}/logout`, { headers: { 'X-Authorization': userService.getAccessToken() } })
         .then(() => userService.removeUser());
+
+export const createMeme = (data) => request.post(createUrl, data);
