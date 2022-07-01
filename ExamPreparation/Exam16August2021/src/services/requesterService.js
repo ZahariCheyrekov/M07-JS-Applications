@@ -24,3 +24,5 @@ export const getAllGames = () => request.get(allGamesUrl);
 export const getNewGames = () => request.get(newGamesUrl);
 
 export const createGame = (data) => request.post(createGameUrl, data);
+
+export const gameDetails = (gameId) => request.get(`${createGameUrl}/${gameId}`);
