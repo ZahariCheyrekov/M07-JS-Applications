@@ -16,3 +16,5 @@ export const register = (email, password) =>
 export const logout = () =>
     request.get(`${baseUrl}/logout`, { headers: { 'X-Authorization': userService.getAccessToken() } })
         .then(() => userService.removeUser());
+
+export const getAllGames = () => register.get(allGamesUrl);
