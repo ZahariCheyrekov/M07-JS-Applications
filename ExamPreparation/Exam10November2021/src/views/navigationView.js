@@ -13,7 +13,7 @@ const navigationTemplate = (user) => html`
 const userLinks = () => html`
     <div id="profile">
         <a>Welcome username</a>
-        <a href="#">My Listings</a>
+        <a href="/data/cars">My Listings</a>
         <a href="/create">Create Listing</a>
         <a href="/logout">Logout</a>
     </div>
