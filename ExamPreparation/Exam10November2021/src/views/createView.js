@@ -52,7 +52,8 @@ export const createView = (ctx) => {
             return;
         }
 
-        const isValidNumber = positiveNumberValidator([data.year, data.price])
+        const isValidNumber = positiveNumberValidator([data.year, data.price]);
+        
         if (!isValidNumber) {
             alertConsole.POSITIVE_PRICE_NUMBERS_MESSAGE();
             return;
