@@ -28,3 +28,5 @@ export const createGame = (data) => request.post(createGameUrl, data);
 export const gameDetails = (gameId) => request.get(`${createGameUrl}/${gameId}`);
 
 export const editGame = (gameId, data) => request.put(`${createGameUrl}/${gameId}`, data);
+
+export const deleteGame = (gameId) => request.del(`${createGameUrl}/${gameId}`);
