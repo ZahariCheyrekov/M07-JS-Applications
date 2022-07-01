@@ -6,6 +6,8 @@ const baseUrl = `${url}/users`;
 const allAddsUrl = `${url}/data/cars?sortBy=_createdOn%20desc`;
 const createUrl = `${url}/data/cars`;
 const addByIdUrl = `${url}/data/cars`;
+const carsByUserUrl = (userId) => `${url}/data/cars?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`;
+const carsByYearUrl = `${url}/data/cars?where=year%3D`;
 
 export const login = (username, password) =>
     request.post(`${baseUrl}/login`, { username, password })
@@ -28,3 +30,5 @@ export const getAddById = (addId) => request.get(`${addByIdUrl}/${addId}`);
 export const editListing = (addId, data) => request.put(`${addByIdUrl}/${addId}`, data);
 
 export const deleteAddById = (addId) => request.del(`${addByIdUrl}/${addId}`);
+
+export const getAddsByUserId = (userId) => request.get(carsByUserUrl(userId));
