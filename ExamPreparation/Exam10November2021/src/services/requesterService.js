@@ -5,6 +5,7 @@ const url = 'http://localhost:3030';
 const baseUrl = `${url}/users`;
 const allAddsUrl = `${url}/data/cars?sortBy=_createdOn%20desc`;
 const createUrl = `${url}/data/cars`;
+const addByIdUrl = `${url}/data/cars`;
 
 export const login = (username, password) =>
     request.post(`${baseUrl}/login`, { username, password })
@@ -21,3 +22,5 @@ export const logout = () =>
 export const getAdds = () => request.get(allAddsUrl);
 
 export const createListing = (data) => request.post(createUrl, data);
+
+export const getAddById = (addId) => request.get(`${addByIdUrl}/${addId}`);
