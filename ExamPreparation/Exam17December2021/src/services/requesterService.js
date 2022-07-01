@@ -4,6 +4,7 @@ import * as userService from './userService.js';
 const url = 'http://localhost:3030';
 const baseUrl = `${url}/users`;
 const createUrl = `${url}/data/memes`;
+const allMemesUrl = `${url}/data/memes?sortBy=_createdOn%20desc`;
 
 export const login = (email, password) =>
     request.post(`${baseUrl}/login`, { email, password })
@@ -18,3 +19,5 @@ export const logout = () =>
         .then(() => userService.removeUser());
 
 export const createMeme = (data) => request.post(createUrl, data);
+
+export const getAllMemes = () => request.get(allMemesUrl);
