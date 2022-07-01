@@ -4,7 +4,7 @@ const navigationTemplate = (user) => html`
     <h1><a class="home" href="#">GamesPlay</a></h1>
     <nav>
         <a href="#">All games</a>
-        ${user ? userLinks : guestLinks}
+        ${user ? userLinks() : guestLinks()}
     </nav>
 `;
 
