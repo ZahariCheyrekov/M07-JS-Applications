@@ -2,8 +2,10 @@ import { html } from '../../node_modules/lit-html/lit-html.js';
 
 import { inputValidator } from '../validators/inputValidator.js';
 
-import * as alertConsole from '../messages/alertMessage.js';
 import * as requestService from '../services/requesterService.js';
+
+import { notify } from '../handlers/notificationHandler.js';
+import { ALL_FIELDS_ARE_REQUIRED_ERROR } from '../messages/alertMessage.js';
 
 const loginTemplate = (onSubmit) => html`
     <section id="login">
@@ -29,15 +31,22 @@ export const loginView = (ctx) => {
 
         const { email, password } = Object.fromEntries(new FormData(ev.currentTarget));
 
-        const isInputValid = inputValidator([email, password]);
+        try {
+            const isInputValid = inputValidator([email, password]);
 
-        if (!isInputValid) {
-            alertConsole.ALL_FIELDS_ARE_REQUIRED_MESSAGE();
-            return;
+            if (!isInputValid) {
+                ALL_FIELDS_ARE_REQUIRED_ERROR();
+            }
+
+            requestService.login(email, password)
+                .then(() => ctx.page.redirect('/'))
+                .catch(err => {
+                    throw new Error(err);
+                });
+
+        } catch (error) {
+            notify(error.message);
         }
-
-        requestService.login(email, password)
-            .then(() => ctx.page.redirect('/'));
     }
 
     ctx.render(loginTemplate(onSubmit));

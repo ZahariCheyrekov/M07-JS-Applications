@@ -1,4 +1,5 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
+import { notify } from '../handlers/notificationHandler.js';
 
 import * as requestService from '../services/requesterService.js';
 
@@ -33,5 +34,6 @@ const memeTemplate = (meme) => html`
 
 export const userMemesView = (ctx) => {
     requestService.getUserMemems(ctx.user._id)
-        .then(memes => ctx.render(userMemesTemplate(memes)));
+        .then(memes => ctx.render(userMemesTemplate(memes)))
+        .catch(err => notify(err));
 }

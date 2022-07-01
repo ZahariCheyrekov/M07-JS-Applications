@@ -3,8 +3,9 @@ import { html } from '../../node_modules/lit-html/lit-html.js';
 import { inputValidator } from '../validators/inputValidator.js';
 import { passwordValidator } from '../validators/passwordValidator.js';
 
-import * as alertConsole from '../messages/alertMessage.js';
 import * as requestService from '../services/requesterService.js';
+import { notify } from '../handlers/notificationHandler.js';
+import { ALL_FIELDS_ARE_REQUIRED_ERROR, PASSWORDS_MUST_MATCH_ERROR } from '../messages/alertMessage.js';
 
 const registerTemplate = (onSubmit) => html`
     <section id="register">
@@ -40,22 +41,28 @@ export const registerView = (ctx) => {
 
         const data = Object.fromEntries(new FormData(ev.currentTarget));
 
-        const isInputValid = inputValidator(Object.values(data));
+        try {
+            const isInputValid = inputValidator(Object.values(data));
 
-        if (!isInputValid) {
-            alertConsole.ALL_FIELDS_ARE_REQUIRED_MESSAGE();
-            return;
+            if (!isInputValid) {
+                ALL_FIELDS_ARE_REQUIRED_ERROR();
+            }
+
+            const isValidPass = passwordValidator(data.password, data.repeatPass);
+
+            if (!isValidPass) {
+                PASSWORDS_MUST_MATCH_ERROR();
+            }
+
+            requestService.register(data)
+                .then(() => ctx.page.redirect('/'))
+                .catch(err => {
+                    throw new Error(err);
+                });
+
+        } catch (error) {
+            notify(error.message);
         }
-
-        const isValidPass = passwordValidator(data.password, data.repeatPass);
-
-        if (!isValidPass) {
-            alertConsole.PASSWORDS_MUST_MATCH_MESSAGE();
-            return;
-        }
-
-        requestService.register(data)
-            .then(() => ctx.page.redirect('/'));
     }
 
     ctx.render(registerTemplate(onSubmit));

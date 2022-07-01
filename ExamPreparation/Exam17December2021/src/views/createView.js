@@ -2,8 +2,10 @@ import { html } from '../../node_modules/lit-html/lit-html.js';
 
 import { inputValidator } from '../validators/inputValidator.js';
 
-import * as alertConsole from '../messages/alertMessage.js';
 import * as requestService from '../services/requesterService.js';
+
+import { notify } from '../handlers/notificationHandler.js';
+import { ALL_FIELDS_ARE_REQUIRED_ERROR } from '../messages/alertMessage.js';
 
 const createTemplate = (onSubmit) => html`
     <section id="create-meme">
@@ -28,15 +30,22 @@ export const createView = (ctx) => {
 
         const data = Object.fromEntries(new FormData(ev.currentTarget));
 
-        const isInputValid = inputValidator(Object.values(data));
+        try {
+            const isInputValid = inputValidator(Object.values(data));
 
-        if (!isInputValid) {
-            alertConsole.ALL_FIELDS_ARE_REQUIRED_MESSAGE();
-            return;
+            if (!isInputValid) {
+                ALL_FIELDS_ARE_REQUIRED_ERROR();
+            }
+
+            requestService.createMeme(data)
+                .then(() => ctx.page.redirect('/'))
+                .catch(err => {
+                    throw new Error(err);
+                });
+
+        } catch (error) {
+            notify(error.message);
         }
-
-        requestService.createMeme(data)
-            .then(() => ctx.page.redirect('/'));
     }
 
     ctx.render(createTemplate(onSubmit));
