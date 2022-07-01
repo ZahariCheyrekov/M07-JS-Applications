@@ -4,12 +4,12 @@ import * as userService from './userService.js';
 const url = 'http://localhost:3030';
 const baseUrl = `${url}/users`;
 
-export const login = (username, password) =>
-    request.post(`${baseUrl}/login`, { username, password })
+export const login = (email, password) =>
+    request.post(`${baseUrl}/login`, { email, password })
         .then(user => userService.saveUser(user));
 
-export const register = (username, password) =>
-    request.post(`${baseUrl}/register`, { username, password })
+export const register = (email, password) =>
+    request.post(`${baseUrl}/register`, { email, password })
         .then(user => userService.saveUser(user));
 
 export const logout = () =>
