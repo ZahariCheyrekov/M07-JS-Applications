@@ -11,6 +11,7 @@ import { loginView } from './views/loginView.js';
 import { registerView } from './views/registerView.js';
 import { catalogView } from './views/catalogView.js';
 import { createView } from './views/createView.js';
+import { detailsView } from './views/detailsView.js';
 
 page(authMiddleware);
 page(navigationMiddleware);
@@ -22,5 +23,6 @@ page('/register', registerView);
 page('/logout', logoutHandler);
 page('/catalog', catalogView);
 page('/create', createView);
+page('/data/cars/:id', detailsView);
 
 page.start();
