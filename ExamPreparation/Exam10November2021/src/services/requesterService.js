@@ -24,3 +24,5 @@ export const getAdds = () => request.get(allAddsUrl);
 export const createListing = (data) => request.post(createUrl, data);
 
 export const getAddById = (addId) => request.get(`${addByIdUrl}/${addId}`);
+
+export const editListing = (addId, data) => request.put(`${addByIdUrl}/${addId}`, data);
