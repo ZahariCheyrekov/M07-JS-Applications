@@ -19,3 +19,7 @@ const loginTemplate = () => html`
         </form>
     </section>
 `;
+
+export const loginView = (ctx) => {
+    ctx.render(loginTemplate());
+}
