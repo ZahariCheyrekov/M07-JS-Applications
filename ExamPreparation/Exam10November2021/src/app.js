@@ -5,6 +5,7 @@ import { navigationMiddleware } from './middlewares/navigationMiddleware.js';
 import { renderMiddleware } from './middlewares/renderMiddleware.js';
 
 import { logoutHandler } from './handlers/logoutHandler.js';
+import { deleteHandler } from './handlers/deleteHandler.js';
 
 import { homeView } from './views/homeView.js';
 import { loginView } from './views/loginView.js';
@@ -26,5 +27,6 @@ page('/catalog', catalogView);
 page('/create', createView);
 page('/data/cars/:id', detailsView);
 page('/data/cars/:id/edit', editView);
+page('/data/cars/:id/delete', deleteHandler);
 
 page.start();
