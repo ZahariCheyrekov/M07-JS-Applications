@@ -15,6 +15,7 @@ import { createView } from './views/createView.js';
 import { detailsView } from './views/detailsView.js';
 import { editView } from './views/editView.js';
 import { userListingView } from './views/userListingView.js';
+import { serachView } from './views/searchView.js';
 
 page(authMiddleware);
 page(navigationMiddleware);
@@ -30,5 +31,6 @@ page('/data/cars/:id', detailsView);
 page('/data/cars/:id/edit', editView);
 page('/data/cars/:id/delete', deleteHandler);
 page('/data/cars', userListingView);
+page('/search', serachView);
 
 page.start();
