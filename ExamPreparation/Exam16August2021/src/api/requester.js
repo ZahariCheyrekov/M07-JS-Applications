@@ -1,7 +1,7 @@
 import * as userService from '../services/userService.js';
 
 export const request = (method, url, data) => {
-    const options = options = {
+    const options = {
         method,
         headers: {}
     };
