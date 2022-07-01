@@ -32,3 +32,5 @@ export const editListing = (addId, data) => request.put(`${addByIdUrl}/${addId}`
 export const deleteAddById = (addId) => request.del(`${addByIdUrl}/${addId}`);
 
 export const getAddsByUserId = (userId) => request.get(carsByUserUrl(userId));
+
+export const getCarsByYear = (year) => request.get(`${carsByYearUrl}${year}`);
