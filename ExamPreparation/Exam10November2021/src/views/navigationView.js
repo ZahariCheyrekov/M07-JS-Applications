@@ -4,15 +4,15 @@ const navigationTemplate = (user) => html`
     <nav>
         <a class="active" href="/">Home</a>
         <a href="/catalog">All Listings</a>
-        <a href="#">By Year</a>
+        <a href="/search">By Year</a>
     
-        ${user ? userLinks() : guestLinks()}
+        ${user ? userLinks(user) : guestLinks()}
     </nav>
 `;
 
-const userLinks = () => html`
+const userLinks = (user) => html`
     <div id="profile">
-        <a>Welcome username</a>
+        <a>Welcome ${user.username}</a>
         <a href="/data/cars">My Listings</a>
         <a href="/create">Create Listing</a>
         <a href="/logout">Logout</a>
