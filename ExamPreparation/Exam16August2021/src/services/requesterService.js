@@ -1,7 +1,7 @@
 import * as request from '../api/requester.js';
 import * as userService from './userService.js';
 
-const url = 'http://localhost:3030/';
+const url = 'http://localhost:3030';
 const baseUrl = `${url}/users`;
 const allGamesUrl = `${url}/data/games?sortBy=_createdOn%20desc`;
 
@@ -17,4 +17,4 @@ export const logout = () =>
     request.get(`${baseUrl}/logout`, { headers: { 'X-Authorization': userService.getAccessToken() } })
         .then(() => userService.removeUser());
 
-export const getAllGames = () => register.get(allGamesUrl);
+export const getAllGames = () => request.get(allGamesUrl);
