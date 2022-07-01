@@ -8,7 +8,7 @@ const userListingTemplate = (adds) => html`
         <h1>My car listings</h1>
         <div class="listings">
     
-            ${adds
+            ${adds.length > 0
                 ? adds.map(add => listingTemplate(add))
                 : html`<p class="no-cars"> You haven't listed any cars yet.</p>`
             }
