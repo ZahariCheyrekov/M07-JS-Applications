@@ -9,7 +9,6 @@ const createTemplate = (onSubmit) => html`
     <section id="create-page" class="auth">
         <form @submit=${onSubmit} id="create">
             <div class="container">
-    
                 <h1>Create Game</h1>
                 <label for="leg-title">Legendary title:</label>
                 <input type="text" id="title" name="title" placeholder="Enter game title...">
