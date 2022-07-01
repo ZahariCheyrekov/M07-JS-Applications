@@ -1,6 +1,6 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
 
-const homeTemplate = (games) => html`
+const homeTemplate = () => html`
     <section id="welcome">
         <div id="welcome-container">
             <h1>Welcome To Meme Lounge</h1>

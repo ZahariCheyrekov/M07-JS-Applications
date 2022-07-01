@@ -24,7 +24,7 @@ const guestLinks = () => html`
             <a href="/login">Login</a>
             <a href="/register">Register</a>
         </div>
-        <a class="active" href="/">Home Page</a>
+        <a class="active" href="/home">Home Page</a>
     </div>
 `;
 

@@ -55,7 +55,7 @@ export const registerView = (ctx) => {
         }
 
         requestService.register(data)
-            .then(() => ctx.page.redirect('/catalog'));
+            .then(() => ctx.page.redirect('/'));
     }
 
     ctx.render(registerTemplate(onSubmit));

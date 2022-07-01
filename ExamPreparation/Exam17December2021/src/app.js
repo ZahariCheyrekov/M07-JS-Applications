@@ -11,16 +11,18 @@ import { loginView } from './views/loginView.js';
 import { registerView } from './views/registerView.js';
 import { createView } from './views/createView.js';
 import { catalogView } from './views/catalogView.js';
+import { detailsView } from './views/detailsView.js';
 
 page(authMiddleware);
 page(navigationMiddleware);
 page(renderMiddleware);
 
-page('/', homeView);
+page('/', catalogView);
+page('/home', homeView);
 page('/login', loginView);
 page('/register', registerView);
 page('/logout', logoutHandler);
 page('/create', createView);
-page('/catalog', catalogView);
+page('/data/memes/:id', detailsView);
 
 page.start();

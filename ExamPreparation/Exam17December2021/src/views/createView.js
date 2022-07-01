@@ -36,7 +36,7 @@ export const createView = (ctx) => {
         }
 
         requestService.createMeme(data)
-            .then(() => ctx.page.redirect('/catalog'));
+            .then(() => ctx.page.redirect('/'));
     }
 
     ctx.render(createTemplate(onSubmit));
