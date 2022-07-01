@@ -1,8 +1,9 @@
 import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 
+import { DELETE_MEME_CONFIRM_MESSAGE } from '../messages/confirmMessage.js';
 import * as requestService from '../services/requesterService.js';
 
-const detailsTemplate = (meme, isOwner) => html`
+const detailsTemplate = (deleteHandler, meme, isOwner) => html`
     <section id="meme-details">
         <h1>Meme Title: ${meme.title}</h1>
         <div class="meme-details">
@@ -15,7 +16,7 @@ const detailsTemplate = (meme, isOwner) => html`
     
                 ${isOwner ? html`
                 <a class="button warning" href="/data/memes/${meme._id}/edit">Edit</a>
-                <button class="button danger">Delete</button>` : nothing}
+                <button @click=${deleteHandler} class="button danger">Delete</button>` : nothing}
             </div>
         </div>
     </section>
@@ -23,6 +24,15 @@ const detailsTemplate = (meme, isOwner) => html`
 
 export const detailsView = (ctx) => {
     const memeId = ctx.params.id;
+
+    const deleteHandler = () => {
+        const confirmed = DELETE_MEME_CONFIRM_MESSAGE();
+
+        if (confirmed) {
+            requestService.deleteMeme(memeId)
+                .then(() => ctx.page.redirect('/'));
+        }
+    }
 
     requestService.memeDetails(memeId)
         .then(meme => {
@@ -33,6 +43,6 @@ export const detailsView = (ctx) => {
                 isOwner = ctx.user._id == meme._ownerId;
             }
 
-            ctx.render(detailsTemplate(meme, isOwner))
+            ctx.render(detailsTemplate(deleteHandler, meme, isOwner))
         });
 }
