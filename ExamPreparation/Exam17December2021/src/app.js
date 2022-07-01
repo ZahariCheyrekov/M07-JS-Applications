@@ -13,6 +13,7 @@ import { createView } from './views/createView.js';
 import { catalogView } from './views/catalogView.js';
 import { detailsView } from './views/detailsView.js';
 import { editView } from './views/editView.js';
+import { userMemesView } from './views/userMemesView.js';
 
 page(authMiddleware);
 page(navigationMiddleware);
@@ -26,5 +27,5 @@ page('/logout', logoutHandler);
 page('/create', createView);
 page('/data/memes/:id', detailsView);
 page('/data/memes/:id/edit', editView);
-
+page('/data/memes', userMemesView);
 page.start();

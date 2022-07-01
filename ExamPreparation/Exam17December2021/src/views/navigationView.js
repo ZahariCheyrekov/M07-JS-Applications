@@ -12,7 +12,7 @@ const userLinks = (user) => html`
         <a href="/create">Create Meme</a>
         <div class="profile">
             <span>Welcome, ${user.email}</span>
-            <a href="#">My Profile</a>
+            <a href="/data/memes">My Profile</a>
             <a href="/logout">Logout</a>
         </div>
     </div>
