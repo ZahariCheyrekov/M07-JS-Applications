@@ -6,6 +6,7 @@ const baseUrl = `${url}/users`;
 const createUrl = `${url}/data/memes`;
 const allMemesUrl = `${url}/data/memes?sortBy=_createdOn%20desc`;
 const memeDetailsUrl = `${url}/data/memes`;
+const editMemeUrl = `${url}/data/memes`;
 
 export const login = (email, password) =>
     request.post(`${baseUrl}/login`, { email, password })
@@ -24,3 +25,5 @@ export const createMeme = (data) => request.post(createUrl, data);
 export const getAllMemes = () => request.get(allMemesUrl);
 
 export const memeDetails = (memeId) => request.get(`${memeDetailsUrl}/${memeId}`);
+
+export const editMeme = (memeId, data) => request.put(`${editMemeUrl}/${memeId}`, data);
