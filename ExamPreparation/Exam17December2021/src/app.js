@@ -10,6 +10,7 @@ import { homeView } from './views/homeView.js';
 import { loginView } from './views/loginView.js';
 import { registerView } from './views/registerView.js';
 import { createView } from './views/createView.js';
+import { catalogView } from './views/catalogView.js';
 
 page(authMiddleware);
 page(navigationMiddleware);
@@ -20,5 +21,6 @@ page('/login', loginView);
 page('/register', registerView);
 page('/logout', logoutHandler);
 page('/create', createView);
+page('/catalog', catalogView);
 
 page.start();
