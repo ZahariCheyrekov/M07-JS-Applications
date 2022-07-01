@@ -47,6 +47,8 @@ export const editView = (ctx) => {
         ev.preventDefault();
 
         const data = Object.fromEntries(new FormData(ev.currentTarget));
+        data.year = Number(data.year);
+        data.price = Number(data.price);
 
         const isInputValid = inputValidator(Object.values(data));
 
