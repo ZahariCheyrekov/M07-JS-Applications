@@ -44,6 +44,8 @@ export const createView = (ctx) => {
         ev.preventDefault();
 
         const data = Object.fromEntries(new FormData(ev.currentTarget));
+        data.year = Number(data.year);
+        data.price = Number(data.price);
 
         const isInputValid = inputValidator(Object.values(data));
 
@@ -53,7 +55,7 @@ export const createView = (ctx) => {
         }
 
         const isValidNumber = positiveNumberValidator([data.year, data.price]);
-        
+
         if (!isValidNumber) {
             alertConsole.POSITIVE_PRICE_NUMBERS_MESSAGE();
             return;
