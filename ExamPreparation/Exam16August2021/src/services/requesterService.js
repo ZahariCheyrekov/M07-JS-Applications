@@ -5,6 +5,7 @@ const url = 'http://localhost:3030';
 const baseUrl = `${url}/users`;
 const allGamesUrl = `${url}/data/games?sortBy=_createdOn%20desc`;
 const newGamesUrl = `${url}/data/games?sortBy=_createdOn%20desc&distinct=category`;
+const createGameUrl = `${url}/data/games`;
 
 export const login = (email, password) =>
     request.post(`${baseUrl}/login`, { email, password })
@@ -21,3 +22,5 @@ export const logout = () =>
 export const getAllGames = () => request.get(allGamesUrl);
 
 export const getNewGames = () => request.get(newGamesUrl);
+
+export const createGame = (data) => request.post(createGameUrl, data);
