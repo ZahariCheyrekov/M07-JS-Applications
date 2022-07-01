@@ -1,7 +1,8 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
 
 import { inputValidator } from '../validators/inputValidator.js';
-import *as alertConsole from '../messages/alertMessage.js';
+import * as alertConsole from '../messages/alertMessage.js';
+import * as requestService from '../services/requesterService.js';
 
 const loginTemplate = (onSubmit) => html`
     <section id="login-page" class="auth">
@@ -36,7 +37,8 @@ export const loginView = (ctx) => {
             return;
         }
 
-        
+        requestService.login(email, password)
+            .then(() => ctx.page.redirect('/'));
     }
 
     ctx.render(loginTemplate(onSubmit));
