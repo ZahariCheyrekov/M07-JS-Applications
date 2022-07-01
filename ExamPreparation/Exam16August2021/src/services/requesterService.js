@@ -10,3 +10,7 @@ export const login = (email, password) =>
 export const register = (email, password) =>
     request.post(`${baseUrl}/register`, { email, password })
         .then(user => userService.saveUser(user));
+
+export const logout = () =>
+    request.get(`${baseUrl}/logout`, { headers: { 'X-Authorization': userService.getAccessToken() } })
+        .then(() => userService.removeUser());
