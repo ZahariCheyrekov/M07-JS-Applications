@@ -31,7 +31,13 @@ export const detailsView = (ctx) => {
 
     requestService.getAddById(addId)
         .then(add => {
-            const isOwner = ctx.user._id == add._ownerId;
+            const user = ctx.user;
+            let isOwner = false;
+
+            if (user) {
+                isOwner = ctx.user._id == add._ownerId;
+            }
+
             ctx.render(detailsTemplate(add, isOwner))
         });
 }
