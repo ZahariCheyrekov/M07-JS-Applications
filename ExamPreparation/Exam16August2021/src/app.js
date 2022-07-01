@@ -6,6 +6,7 @@ import { renderMiddleware } from './middlewares/renderMiddleware.js';
 
 import { loginView } from './views/loginView.js';
 import { registerView } from './views/registerView.js';
+import { catalogView } from './views/catalogView.js';
 
 import { logoutHandler } from './handlers/logoutHandler.js';
 
@@ -17,5 +18,6 @@ page('/', () => console.log('Home'));
 page('/login', loginView);
 page('/register', registerView);
 page('/logout', logoutHandler);
+page('/catalog', catalogView);
 
 page.start();
