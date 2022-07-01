@@ -12,6 +12,7 @@ import { registerView } from './views/registerView.js';
 import { catalogView } from './views/catalogView.js';
 import { createView } from './views/createView.js';
 import { detailsView } from './views/detailsView.js';
+import { editView } from './views/editView.js';
 
 page(authMiddleware);
 page(navigationMiddleware);
@@ -24,5 +25,6 @@ page('/logout', logoutHandler);
 page('/catalog', catalogView);
 page('/create', createView);
 page('/data/cars/:id', detailsView);
+page('/data/cars/:id/edit', editView);
 
 page.start();
