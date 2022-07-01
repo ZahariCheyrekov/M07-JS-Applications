@@ -18,8 +18,8 @@ const detailsTemplate = (game, isOwner) => html`
     
             ${isOwner ? html`
             <div class="buttons">
-                <a href="#" class="button">Edit</a>
-                <a href="#" class="button">Delete</a>
+                <a href="/data/games/${game._id}/edit" class="button">Edit</a>
+                <a href="/data/games/${game._id}/delete" class="button">Delete</a>
             </div>
             `: nothing}
     
