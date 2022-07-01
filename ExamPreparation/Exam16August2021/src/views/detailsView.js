@@ -1,20 +1,26 @@
 import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 
+import { inputValidator } from '../validators/inputValidator.js';
+import { commentsView } from './commentsView.js';
+
+import * as alertConsole from '../messages/alertMessage.js';
 import * as requestService from '../services/requesterService.js';
 
-const detailsTemplate = (game, isOwner) => html`
+const detailsTemplate = (game, displayCommentSection, isOwner, commentsSection, onSubmit) => html`
     <section id="game-details">
         <h1>Game Details</h1>
         <div class="info-section">
     
             <div class="game-header">
                 <img class="game-img" src="${game.imageUrl}" />
-                <h1>Bright</h1>
+                <h1>${game.title}</h1>
                 <span class="levels">${game.title}</span>
                 <p class="type">${game.category}</p>
             </div>
     
             <p class="text">${game.summary}</p>
+    
+            ${commentsSection}
     
             ${isOwner ? html`
             <div class="buttons">
@@ -22,46 +28,52 @@ const detailsTemplate = (game, isOwner) => html`
                 <a href="/data/games/${game._id}/delete" class="button">Delete</a>
             </div>
             `: nothing}
+        </div>
     
-            <!-- Bonus ( for Guests and Users ) -->
-            <!-- <div class="details-comments">
-                        <h2>Comments:</h2>
-                               <ul> -->
-            <!-- list all comments for current game (If any) -->
-            <!-- <li class="comment">
-                                           <p>Content: I rate this one quite highly.</p>
-                               </li>
-                                       <li class="comment">
-                                <p>Content: The best game.</p>
-                        </li>
-                           </ul> -->
-            <!-- Display paragraph: If there are no games in the database -->
-            <!-- <p class="no-comment">No comments.</p>
-                      </div> -->
-    
-            <!-- Edit/Delete buttons ( Only for creator of this game )  -->
-            <!-- <div class="buttons">
-                             <a href="#" class="button">Edit</a>
-                                        <a href="#" class="button">Delete</a>
-                           </div>
-                          </div> -->
-    
-            <!-- Bonus -->
-            <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) -->
-            <!-- <article class="create-comment">
-                       <label>Add new comment:</label>
-                        <form class="form">
-                                <textarea name="comment" placeholder="Comment......"></textarea>
-                                    <input class="btn submit" type="submit" value="Add Comment">
-                                   </form>
-                                </article> -->
+        ${displayCommentSection
+        ? nothing
+        : html`
+        <article class="create-comment">
+            <label>Add new comment:</label>
+            <form @submit=${onSubmit} class="form">
+                <textarea name="comment" placeholder="Comment......"></textarea>
+                <input class="btn submit" type="submit" value="Add Comment">
+            </form>
+        </article>`}
     </section>
 `;
 
-export const detailsView = (ctx) => {
-    requestService.gameDetails(ctx.params.id)
-        .then(game => {
+export const detailsView = async (ctx) => {
+    const gameId = ctx.params.id;
+
+    const [game, commentsSection] = await Promise.all([
+        requestService.gameDetails(gameId),
+        commentsView(gameId)
+    ]);
+
+    requestService.gameDetails(gameId)
+        .then(() => {
             const isOwner = ctx.user && ctx.user._id == game._ownerId;
-            ctx.render(detailsTemplate(game, isOwner));
+            const user = ctx.user;
+            const displayCommentSection = isOwner || !user;
+            ctx.render(detailsTemplate(game, displayCommentSection, isOwner, commentsSection, onSubmit));
         });
+
+    const onSubmit = (ev) => {
+        ev.preventDefault();
+
+        const { comment } = Object.fromEntries(new FormData(ev.currentTarget));
+
+        const isInputValid = inputValidator([comment]);
+
+        if (!isInputValid) {
+            alertConsole.ENTER_VALID_COMMENT_MESSAGE();
+            return;
+        }
+
+        ev.currentTarget.reset();
+
+        requestService.createComment(gameId, comment)
+            .then((ctx.page.redirect(`/data/games/${gameId}`)));
+    }
 }

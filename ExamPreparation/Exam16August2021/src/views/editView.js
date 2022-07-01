@@ -32,7 +32,6 @@ const editTemplate = (onSubmit, game) => html`
 
 export const editView = (ctx) => {
     const gameId = ctx.params.id;
-    console.log(gameId);
 
     const onSubmit = (ev) => {
         ev.preventDefault();
