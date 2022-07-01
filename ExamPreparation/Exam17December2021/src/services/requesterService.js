@@ -8,6 +8,7 @@ const allMemesUrl = `${url}/data/memes?sortBy=_createdOn%20desc`;
 const memeDetailsUrl = `${url}/data/memes`;
 const editMemeUrl = `${url}/data/memes`;
 const deleteMemeUrl = `${url}/data/memes`;
+const userMemesUrl = (userId) => `${url}/data/memes?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`
 
 export const login = (email, password) =>
     request.post(`${baseUrl}/login`, { email, password })
@@ -30,3 +31,5 @@ export const memeDetails = (memeId) => request.get(`${memeDetailsUrl}/${memeId}`
 export const editMeme = (memeId, data) => request.put(`${editMemeUrl}/${memeId}`, data);
 
 export const deleteMeme = (memeId) => request.del(`${deleteMemeUrl}/${memeId}`);
+
+export const getUserMemems = (userId) => request.get(userMemesUrl(userId));
