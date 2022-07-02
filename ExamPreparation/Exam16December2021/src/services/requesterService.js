@@ -4,6 +4,7 @@ import * as userService from './userService.js';
 const url = 'http://localhost:3030';
 const baseUrl = `${url}/users`;
 const theatersUrl = `${url}/data/theaters?sortBy=_createdOn%20desc&distinct=title`;
+const theatersAllUrl = `${url}/data/theaters`;
 
 export const login = (email, password) =>
     request.post(`${baseUrl}/login`, { email, password })
@@ -18,3 +19,5 @@ export const logout = () =>
         .then(() => userService.removeUser());
 
 export const getAllTheaters = () => request.get(theatersUrl);
+
+export const createTheater = (data) => request.post(theatersAllUrl, data);
