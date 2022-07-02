@@ -28,7 +28,7 @@ const theaterTemplate = (theater) => html`
             <img src="${theater.imageUrl}">
             <h2>${theater.title}</h2>
             <h6>${theater.date}</h6>
-            <a href="/data/theaters${theater._id}" class="details-button">Details</a>
+            <a href="/data/theaters/${theater._id}" class="details-button">Details</a>
         </div>
     </div>
 `;
