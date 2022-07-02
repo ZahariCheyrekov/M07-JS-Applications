@@ -1,5 +1,5 @@
 import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
-import { notify } from '../handlers/notificationHandler.js';
+import { notificationHandler } from '../handlers/notificationHandler.js';
 
 import { DELETE_MEME_CONFIRM_MESSAGE } from '../messages/confirmMessage.js';
 import * as requestService from '../services/requesterService.js';
@@ -31,7 +31,7 @@ export const detailsView = (ctx) => {
 
         if (confirmed) {
             requestService.deleteMeme(memeId)
-                .then(() => ctx.page.redirect('/'));
+                .then(() => ctx.page.redirect('/catalog'));
         }
     }
 

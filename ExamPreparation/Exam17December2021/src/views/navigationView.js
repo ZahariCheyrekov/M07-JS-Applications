@@ -2,7 +2,7 @@ import { html } from '../../node_modules/lit-html/lit-html.js';
 
 const navigationTemplate = (user) => html`
     <nav>
-        <a href="#">All Memes</a>
+        <a href="/catalog">All Memes</a>
         ${user ? userLinks(user) : guestLinks()}
     </nav>
 `;
@@ -24,7 +24,7 @@ const guestLinks = () => html`
             <a href="/login">Login</a>
             <a href="/register">Register</a>
         </div>
-        <a class="active" href="/home">Home Page</a>
+        <a class="active" href="/">Home Page</a>
     </div>
 `;
 
