@@ -25,8 +25,8 @@ page('/register', registerView);
 page('/logout', logoutHandler);
 page('/create', createView);
 page('/profile', profileView);
-page('/data/theaters/:id', detailsView);
 page('/data/theaters/:id/edit', editView);
 page('/data/theaters/:id/delete', deleteHandler);
+page('/data/theaters/:id', detailsView);
 
 page.start();
