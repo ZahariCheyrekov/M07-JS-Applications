@@ -6,6 +6,7 @@ const baseUrl = `${url}/users`;
 const theatersUrl = `${url}/data/theaters?sortBy=_createdOn%20desc&distinct=title`;
 const theatersAllUrl = `${url}/data/theaters`;
 const theaterDetailsUrl = (theaterId) => `${theatersAllUrl}/${theaterId}`;
+const editTheaterUrl = (theaterId) => `${theatersAllUrl}/${theaterId}`;
 
 export const login = (email, password) =>
     request.post(`${baseUrl}/login`, { email, password })
@@ -24,3 +25,5 @@ export const getAllTheaters = () => request.get(theatersUrl);
 export const createTheater = (data) => request.post(theatersAllUrl, data);
 
 export const getTheaterDetails = (theaterId) => request.get(theaterDetailsUrl(theaterId));
+
+export const editTheater = (theaterId, data) => request.put(theaterDetailsUrl(theaterId), data);
