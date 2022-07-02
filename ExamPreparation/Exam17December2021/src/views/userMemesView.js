@@ -1,16 +1,17 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
-import { notify } from '../handlers/notificationHandler.js';
+
+import { notificationHandler } from '../handlers/notificationHandler.js';
 
 import * as requestService from '../services/requesterService.js';
 
-const userMemesTemplate = (memes) => html`
+const userMemesTemplate = (user, memes) => html`
     <section id="user-profile-page" class="user-profile">
         <article class="user-info">
             <img id="user-avatar-url" alt="user-profile" src="/images/female.png">
             <div class="user-content">
-                <p>Username: Mary</p>
-                <p>Email: mary@abv.bg</p>
-                <p>My memes count: 2</p>
+                <p>Username: ${user.username}</p>
+                <p>Email: ${user.email}</p>
+                <p>My memes count: ${memes.length}</p>
             </div>
         </article>
         <h1 id="user-listings-title">User Memes</h1>
@@ -34,6 +35,6 @@ const memeTemplate = (meme) => html`
 
 export const userMemesView = (ctx) => {
     requestService.getUserMemems(ctx.user._id)
-        .then(memes => ctx.render(userMemesTemplate(memes)))
-        .catch(err => notify(err));
+        .then(memes => ctx.render(userMemesTemplate(ctx.user,memes)))
+        .catch(err => notificationHandler(err));
 }

@@ -4,7 +4,7 @@ import { inputValidator } from '../validators/inputValidator.js';
 
 import * as requestService from '../services/requesterService.js';
 
-import { notify } from '../handlers/notificationHandler.js';
+import { notificationHandler } from '../handlers/notificationHandler.js';
 import { ALL_FIELDS_ARE_REQUIRED_ERROR } from '../messages/alertMessage.js';
 
 const loginTemplate = (onSubmit) => html`
@@ -39,13 +39,13 @@ export const loginView = (ctx) => {
             }
 
             requestService.login(email, password)
-                .then(() => ctx.page.redirect('/'))
+                .then(() => ctx.page.redirect('/catalog'))
                 .catch(err => {
                     throw new Error(err);
                 });
 
         } catch (error) {
-            notify(error.message);
+            notificationHandler(error.message);
         }
     }
 

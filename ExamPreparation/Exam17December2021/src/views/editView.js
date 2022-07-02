@@ -4,7 +4,7 @@ import { inputValidator } from '../validators/inputValidator.js';
 
 import * as requestService from '../services/requesterService.js';
 
-import { notify } from '../handlers/notificationHandler.js';
+import { notificationHandler } from '../handlers/notificationHandler.js';
 import { ALL_FIELDS_ARE_REQUIRED_ERROR } from '../messages/alertMessage.js';
 
 const editTemplate = (meme, onSubmit) => html`
@@ -47,11 +47,11 @@ export const editView = (ctx) => {
                 });
 
         } catch (error) {
-            notify(error.message);
+            notificationHandler(error.message);
         }
     }
 
     requestService.memeDetails(memeId)
         .then(meme => ctx.render(editTemplate(meme, onSubmit)))
-        .catch(err => notify(err));
+        .catch(err => notificationHandler(err));
 }

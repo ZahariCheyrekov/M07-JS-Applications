@@ -1,6 +1,6 @@
 const errorBox = document.getElementById('errorBox');
 
-export const notify = (message) => {
+export const notificationHandler = (message) => {
     errorBox.style.display = 'block';
     errorBox.querySelector('span').textContent = message;
 

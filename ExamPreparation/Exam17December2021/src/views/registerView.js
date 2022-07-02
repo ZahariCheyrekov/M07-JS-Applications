@@ -4,7 +4,7 @@ import { inputValidator } from '../validators/inputValidator.js';
 import { passwordValidator } from '../validators/passwordValidator.js';
 
 import * as requestService from '../services/requesterService.js';
-import { notify } from '../handlers/notificationHandler.js';
+import { notificationHandler } from '../handlers/notificationHandler.js';
 import { ALL_FIELDS_ARE_REQUIRED_ERROR, PASSWORDS_MUST_MATCH_ERROR } from '../messages/alertMessage.js';
 
 const registerTemplate = (onSubmit) => html`
@@ -55,13 +55,13 @@ export const registerView = (ctx) => {
             }
 
             requestService.register(data)
-                .then(() => ctx.page.redirect('/'))
+                .then(() => ctx.page.redirect('/catalog'))
                 .catch(err => {
                     throw new Error(err);
                 });
 
         } catch (error) {
-            notify(error.message);
+            notificationHandler(error.message);
         }
     }
 
