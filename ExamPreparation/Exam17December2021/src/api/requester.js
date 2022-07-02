@@ -1,3 +1,4 @@
+import { notificationHandler } from '../handlers/notificationHandler.js';
 import * as userService from '../services/userService.js';
 
 export const request = (method, url, data) => {
@@ -21,7 +22,15 @@ export const request = (method, url, data) => {
     }
 
     return fetch(url, options)
-        .then(res => res.json());
+        .then(handlerResponse);
+}
+
+const handlerResponse = (res) => {
+    if (res.ok == false) {
+        throw new Error(notificationHandler(res.statusText));
+    }
+
+    return res.json();
 }
 
 export const get = request.bind({}, 'GET');
