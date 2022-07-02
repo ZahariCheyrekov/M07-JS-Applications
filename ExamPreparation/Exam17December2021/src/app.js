@@ -5,6 +5,7 @@ import { navigationMiddleware } from './middlewares/navigationMiddleware.js';
 import { renderMiddleware } from './middlewares/renderMiddleware.js';
 
 import { logoutHandler } from './handlers/logoutHandler.js';
+import { loggedHandler } from './handlers/loggedHandler.js';
 
 import { homeView } from './views/homeView.js';
 import { loginView } from './views/loginView.js';
@@ -19,8 +20,8 @@ page(authMiddleware);
 page(navigationMiddleware);
 page(renderMiddleware);
 
-page('/', catalogView);
-page('/home', homeView);
+page('/', loggedHandler, homeView);
+page('/catalog', catalogView);
 page('/login', loginView);
 page('/register', registerView);
 page('/logout', logoutHandler);
@@ -28,4 +29,5 @@ page('/create', createView);
 page('/data/memes/:id', detailsView);
 page('/data/memes/:id/edit', editView);
 page('/data/memes', userMemesView);
+
 page.start();
