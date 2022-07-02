@@ -10,7 +10,7 @@ const navigationTemplate = (user) => html`
 `;
 
 const userLinks = () => html`
-    <li><a href="#">Profile</a></li>
+    <li><a href="/profile">Profile</a></li>
     <li><a href="/create">Create Event</a></li>
     <li><a href="/logout">Logout</a></li>
 `;
