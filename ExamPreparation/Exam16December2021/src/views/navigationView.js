@@ -4,12 +4,12 @@ const navigationTemplate = (user) => html`
     <nav>
         <a href="/">Theater</a>
         <ul>
-            ${user ? userLinks(user) : guestLinks()}
+            ${user ? userLinks() : guestLinks()}
         </ul>
     </nav>
 `;
 
-const userLinks = (user) => html`
+const userLinks = () => html`
     <li><a href="#">Profile</a></li>
     <li><a href="/create">Create Event</a></li>
     <li><a href="/logout">Logout</a></li>
