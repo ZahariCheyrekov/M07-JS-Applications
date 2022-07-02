@@ -20,8 +20,8 @@ const detailsTemplate = (theater, isOwner) => html`
     
                 <div class="buttons">
                     ${isOwner ? html`
-                    <a class="btn-delete" href="#">Delete</a>
-                    <a class="btn-edit" href="#">Edit</a>
+                    <a class="btn-delete" href="/data/theaters/${theater._id}/delete">Delete</a>
+                    <a class="btn-edit" href="/data/theaters/${theater._id}/edit">Edit</a>
                     `
                     : html`<a class="btn-like" href="#">Like</a>`}    
                 </div>
