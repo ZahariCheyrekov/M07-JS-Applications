@@ -7,6 +7,8 @@ const theatersUrl = `${url}/data/theaters?sortBy=_createdOn%20desc&distinct=titl
 const theatersAllUrl = `${url}/data/theaters`;
 const theaterDetailsUrl = (theaterId) => `${theatersAllUrl}/${theaterId}`;
 const editTheaterUrl = (theaterId) => `${theatersAllUrl}/${theaterId}`;
+const deleteTheaterUrl = (theaterId) => `${theatersAllUrl}/${theaterId}`;
+const listTheatersUrl = (userId) => `${url}/data/theaters?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`;
 
 export const login = (email, password) =>
     request.post(`${baseUrl}/login`, { email, password })
@@ -26,4 +28,8 @@ export const createTheater = (data) => request.post(theatersAllUrl, data);
 
 export const getTheaterDetails = (theaterId) => request.get(theaterDetailsUrl(theaterId));
 
-export const editTheater = (theaterId, data) => request.put(theaterDetailsUrl(theaterId), data);
+export const editTheater = (theaterId, data) => request.put(editTheaterUrl(theaterId), data);
+
+export const deleteTheater = (theaterId) => request.del(deleteTheaterUrl(theaterId));
+
+export const getListTheaters = (userId) => request.get(listTheatersUrl(userId));
