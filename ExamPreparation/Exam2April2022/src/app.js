@@ -11,6 +11,8 @@ import { loginView } from './views/loginView.js';
 import { registerView } from './views/registerView.js';
 import { dashboardView } from './views/dashboardView.js';
 import { createView } from './views/createView.js';
+import { detailsView } from './views/detailsView.js';
+import { editView } from './views/editView.js';
 
 page(authMiddleware);
 page(navigationMiddleware);
@@ -23,5 +25,6 @@ page('/logout', logoutHandler);
 page('/dashboard', dashboardView);
 page('/create', createView);
 page('/data/pets/:id', detailsView);
+page('/data/pets/:id/edit', editView);
 
 page.start(); 
