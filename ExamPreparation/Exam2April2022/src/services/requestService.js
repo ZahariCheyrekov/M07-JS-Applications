@@ -36,3 +36,6 @@ export const deletePet = (petId) =>
 export const addDonation = (petId) =>
     request.post(`${baseUrl}/data/donation`, { petId });
 
+export const getPetDonations = (petId) =>
+    request.get(`${baseUrl}/data/donation?where=petId%3D%22${petId}%22&distinct=_ownerId&count`);
+
