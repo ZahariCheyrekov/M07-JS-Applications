@@ -35,3 +35,7 @@ export const create = (data) =>
 
 export const deletePost = (postId) =>
     request.del(`${baseUrl}/data/posts/${postId}`);
+
+export const makeDonation = (postId) =>
+    request.post(`${baseUrl}/data/donations`, { postId });
+
