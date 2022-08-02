@@ -30,6 +30,6 @@ const petCardTemplate = (pet) => html`
 `;
 
 export const dashboardView = (ctx) => {
-    requestService.getPets()
+    requestService.getPets() 
         .then(pets => ctx.render(dashboardTemplate(pets)));
 }
