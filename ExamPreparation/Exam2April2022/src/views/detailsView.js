@@ -3,59 +3,43 @@ import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 import * as userService from '../services/userService.js';
 import * as requestService from '../services/requestService.js';
 
-const detailsTemplate = (post, donataions, isOwner, showDonateBtn, onLike) => html`
-    <!-- <section id="details-page">
-        <h1 class="title">Post Details</h1>
-    
-        <div id="container">
-            <div id="details">
-                <div class="image-wrapper">
-                    <img src="${post.imageUrl}" alt="Material Image" class="post-image">
+const detailsTemplate = (pet, user) => html`
+    <section id="detailsPage">
+        <div class="details">
+            <div class="animalPic">
+                <img src="${pet.image}">
+            </div>
+            <div>
+                <div class="animalInfo">
+                    <h1>Name: ${pet.name}</h1>
+                    <h3>Breed: ${pet.breed}</h3>
+                    <h4>Age: ${pet.age}</h4>
+                    <h4>Weight: ${pet.weight}</h4>
+                    <h4 class="donation">Donation: 0$</h4>
+                    <!-- TODO: Check donation -->
                 </div>
-                <div class="info">
-                    <h2 class="title post-title">${post.title}</h2>
-                    <p class="post-description">Description: ${post.description}</p>
-                    <p class="post-address">Address: ${post.address}</p>
-                    <p class="post-number">Phone number: ${post.phone}</p>
-                    <p class="donate-Item">Donate Materials: ${donataions}</p>
     
-                    <div class="btns">
-                    ${isOwner 
-                    ? html`
-                        <a href="/data/posts/${post._id}/edit" class="edit-btn btn">Edit</a>
-                        <a href="/data/posts/${post._id}/delete" class="delete-btn btn">Delete</a>
-                        `
-                    : nothing
-                    }
-                        
-                    ${showDonateBtn
-                    ? html`<a href="#" class="donate-btn btn" @click=${onLike}>Donate</a>`
-                    : null
-                    }
-                    </div>
+                ${user
+                ? html`
+                <div class="actionBtn">
+                    <!-- Only for registered user and creator of the pets-->
+                    <a href="/data/pets/${pet._id}/edit" class="edit">Edit</a>
+                    <a href="/data/pets/${pet._id}/delete" class="remove">Delete</a>
+                    <!--(Bonus Part) Only for no creator and user-->
+                    <a href="#" class="donate">Donate</a>
                 </div>
+                `
+                : nothing
+                }
             </div>
         </div>
-    </section> -->
+    </section>
 `;
 
 export const detailsView = async (ctx) => {
-    // const user = userService.getUser();
-    // const postId = ctx.params.id;
+    const user = userService.getUser();
+    const petId = ctx.params.id;
 
-    // const onLike = () => {
-    //     requestService.makeDonation(postId)
-    //         .then(() => ctx.page.redirect(`/data/posts/${postId}`));
-    // }
-
-    // const [post, donations, hasDonation] = await Promise.all([
-    //     requestService.getPostById(postId),
-    //     requestService.getPostDonations(postId),
-    //     user ? requestService.getUserDonation(user._id, postId) : 0 
-    // ]);
-
-    // const isOwner = user && user._id == post._ownerId;
-    // const showDonateBtn = user && !isOwner && hasDonation == 0;
-
-    // ctx.render(detailsTemplate(post, donations, isOwner, showDonateBtn, onLike));
+    requestService.getPetById(petId)
+        .then(pet => ctx.render(detailsTemplate(pet, user)));
 }
