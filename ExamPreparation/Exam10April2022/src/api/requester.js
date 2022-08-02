@@ -1,21 +1,21 @@
-import { getAccessToken } from '../services/userService.js';
+import * as userService from '../services/userService.js';
 
-export const requester = (method, url, data) => {
+export const request = (method, url, data) => {
     const options = {
         method,
         headers: {}
     };
 
-    const token = getAccessToken();
+    const token = userService.getAccessToken();
 
     if (token) {
-        options.headers['X-Athorization'] = token;
+        options.headers['X-Authorization'] = token;
     }
 
     if (data) {
         options.headers['Content-Type'] = 'application/json';
 
-        if (method !== 'GET') {
+        if (method != 'GET') {
             options.body = JSON.stringify(data);
         }
     }
@@ -24,8 +24,8 @@ export const requester = (method, url, data) => {
         .then(res => res.json());
 }
 
-export const get = requester.bind(null, 'GET');
-export const post = requester.bind(null, 'POST');
-export const put = requester.bind(null, 'PUT');
-export const patch = requester.bind(null, 'PATCH');
-export const del = requester.bind(null, 'DELETE');
+export const get = request.bind(null, 'GET');
+export const post = request.bind(null, 'POST');
+export const put = request.bind(null, 'PUT');
+export const patch = request.bind(null, 'PATCH');
+export const del = request.bind(null, 'DELETE');
