@@ -23,3 +23,5 @@ export const getPostById = (postId) => request.get(`${baseUrl}/data/posts/${post
 export const getPosts = () => request.get(`${baseUrl}/data/posts?sortBy=_createdOn%20desc`);
 
 export const create = (data) => request.post(`${baseUrl}/data/posts`, data);
+
+export const deletePost = (postId) => request.del(`${baseUrl}/data/posts/${postId}`);
