@@ -8,6 +8,10 @@ export const login = (email, password) =>
     request.post(`${url}/login`, { email, password })
         .then(user => userService.saveUser(user));
 
+export const register = (email, password) =>
+    request.post(`${url}/register`, { email, password })
+        .then(user => userService.saveUser(user));
+
 export const logout = () =>
     request.get(`${url}/logout`)
         .then(() => userService.removeUser());
