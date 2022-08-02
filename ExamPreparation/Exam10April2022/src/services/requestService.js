@@ -17,3 +17,5 @@ export const logout = () =>
         .then(() => userService.removeUser());
 
 export const getPosts = () => request.get(`${baseUrl}/data/posts?sortBy=_createdOn%20desc`);
+
+export const create = (data) => request.post(`${baseUrl}/data/posts`, data);
