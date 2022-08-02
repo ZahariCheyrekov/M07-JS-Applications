@@ -15,3 +15,5 @@ export const register = (email, password) =>
 export const logout = () =>
     request.get(`${url}/logout`)
         .then(() => userService.removeUser());
+
+export const getPosts = () => request.get(`${baseUrl}/data/posts?sortBy=_createdOn%20desc`);
