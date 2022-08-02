@@ -22,5 +22,6 @@ page('/register', registerView);
 page('/logout', logoutHandler);
 page('/dashboard', dashboardView);
 page('/create', createView);
+page('/data/pets/:id', detailsView);
 
 page.start(); 
