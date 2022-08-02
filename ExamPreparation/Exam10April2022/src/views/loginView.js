@@ -1,5 +1,8 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
+
+import * as requestService from '../services/requestService.js';
 import { inputValidator } from '../validators/inputValidator.js';
+import { ALL_FIELDS_ARE_REQUIRED_MESSAGE } from '../messages/alertMessages.js';
 
 const loginTemplate = (onSubmit) => html`
     <section id="login-page" class="auth">
@@ -30,6 +33,7 @@ export const loginView = (ctx) => {
         const isValid = inputValidator(data);
 
         if (!isValid) {
+            alert(ALL_FIELDS_ARE_REQUIRED_MESSAGE);
             return;
         }
 
