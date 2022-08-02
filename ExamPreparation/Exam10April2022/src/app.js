@@ -6,6 +6,7 @@ import { navigationMiddleware } from './middlewares/navigationMiddleware.js';
 
 import { logoutHandler } from './handlers/logoutHandler.js';
 
+import { dashboardView } from './views/dashboardView.js'; 
 import { loginView } from './views/loginView.js';
 import { registerView } from './views/registerView.js';
 
@@ -13,7 +14,7 @@ page(authMiddleware);
 page(navigationMiddleware);
 page(renderMiddleware);
 
-page('/', () => console.log('Home'));
+page('/', dashboardView);
 page('/login', loginView);
 page('/register', registerView);
 page('/logout', logoutHandler);
