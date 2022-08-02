@@ -1,11 +1,9 @@
 import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 
-import { inputValidator } from '../validators/inputValidator.js';
-
 import * as userService from '../services/userService.js';
 import * as requestService from '../services/requestService.js';
 
-const detailsTemplate = (user, post) => html`
+const detailsTemplate = (post, donataions, isOwner, showDonateBtn, onLike) => html`
     <section id="details-page">
         <h1 class="title">Post Details</h1>
     
@@ -19,27 +17,45 @@ const detailsTemplate = (user, post) => html`
                     <p class="post-description">Description: ${post.description}</p>
                     <p class="post-address">Address: ${post.address}</p>
                     <p class="post-number">Phone number: ${post.phone}</p>
-                    <p class="donate-Item">Donate Materials: 0</p>
-                    <!-- TODO: check donate material -->
+                    <p class="donate-Item">Donate Materials: ${donataions}</p>
     
-                    <!--Edit and Delete are only for creator-->
                     <div class="btns">
+                    ${isOwner 
+                    ? html`
                         <a href="/data/posts/${post._id}/edit" class="edit-btn btn">Edit</a>
                         <a href="/data/posts/${post._id}/delete" class="delete-btn btn">Delete</a>
-    
-                        <!--Bonus - Only for logged-in users ( not authors )-->
-                        <a href="#" class="donate-btn btn">Donate</a>
+                        `
+                    : nothing
+                    }
+                        
+                    ${showDonateBtn
+                    ? html`<a href="#" class="donate-btn btn" @click=${onLike}>Donate</a>`
+                    : null
+                    }
                     </div>
-    
                 </div>
             </div>
         </div>
     </section>
 `;
 
-export const detailsView = (ctx) => {
+export const detailsView = async (ctx) => {
     const user = userService.getUser();
+    const postId = ctx.params.id;
 
-    requestService.getPostById(ctx.params.id)
-        .then(post => ctx.render(detailsTemplate(user, post)));
+    const onLike = () => {
+        requestService.makeDonation(postId)
+            .then(() => ctx.page.redirect(`/data/posts/${postId}`));
+    }
+
+    const [post, donations, hasDonation] = await Promise.all([
+        requestService.getPostById(postId),
+        requestService.getPostDonations(postId),
+        user ? requestService.getUserDonation(user._id, postId) : 0 
+    ]);
+
+    const isOwner = user && user._id == post._ownerId;
+    const showDonateBtn = user && !isOwner && hasDonation == 0;
+
+    ctx.render(detailsTemplate(post, donations, isOwner, showDonateBtn, onLike));
 }
