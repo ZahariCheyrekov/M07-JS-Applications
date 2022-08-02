@@ -13,7 +13,7 @@ const navigationTemplate = (user) => html`
                 ? userNavigation()
                 : guestNavigation()
             }
-        </ul>
+        </ul> 
     </nav>
 `;
 
