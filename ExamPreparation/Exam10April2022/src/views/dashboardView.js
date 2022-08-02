@@ -21,7 +21,7 @@ const postTemplate = (post) => html`
         <h2 class="post-title">${post.title}</h2>
         <img class="post-image" src="${post.imageUrl}" alt="Material Image">
         <div class="btn-wrapper">
-            <a href="#" class="details-btn btn">Details</a>
+            <a href="/data/posts/${post._id}" class="details-btn btn">Details</a>
         </div>
     </div>
 `;
