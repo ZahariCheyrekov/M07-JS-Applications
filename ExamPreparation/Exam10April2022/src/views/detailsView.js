@@ -24,8 +24,8 @@ const detailsTemplate = (user, post) => html`
     
                     <!--Edit and Delete are only for creator-->
                     <div class="btns">
-                        <a href="#" class="edit-btn btn">Edit</a>
-                        <a href="#" class="delete-btn btn">Delete</a>
+                        <a href="/data/posts/${post._id}/edit" class="edit-btn btn">Edit</a>
+                        <a href="/data/posts/${post._id}/delete" class="delete-btn btn">Delete</a>
     
                         <!--Bonus - Only for logged-in users ( not authors )-->
                         <a href="#" class="donate-btn btn">Donate</a>
