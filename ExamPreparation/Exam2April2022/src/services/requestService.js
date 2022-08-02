@@ -32,3 +32,7 @@ export const editCard = (petId, data) =>
 
 export const deletePet = (petId) =>
     request.del(`${baseUrl}/data/pets/${petId}`);
+
+export const addDonation = (petId) =>
+    request.post(`${baseUrl}/data/donation`, { petId });
+
