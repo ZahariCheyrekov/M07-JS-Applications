@@ -41,3 +41,6 @@ export const makeDonation = (postId) =>
 
 export const getPostDonations = (postId) =>
     request.get(`${baseUrl}/data/donations?where=postId%3D%22${postId}%22&distinct=_ownerId&count`);
+
+export const getUserDonation = (userId, postId) =>
+    request.get(`${baseUrl}/data/donations?where=postId%3D%22${postId}%22%20and%20_ownerId%3D%22${userId}%22&count`);
