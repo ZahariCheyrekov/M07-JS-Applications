@@ -23,3 +23,9 @@ export const getPets = () =>
 
 export const createPet = (data) =>
     request.post(`${baseUrl}/data/pets`, data);
+
+export const getPetById = (petId) =>
+    request.get(`${baseUrl}/data/pets/${petId}`);
+
+export const editCard = (petId, data) =>
+    request.put(`${baseUrl}/data/pets/${petId}`, data);
