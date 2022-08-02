@@ -1,7 +1,5 @@
 import { html } from '../../node_modules/lit-html/lit-html.js';
 
-import * as requestService from '../services/requestService.js';
-
 const homeTemplate = () => html`
     <section class="welcome-content">
         <article class="welcome-content-text">

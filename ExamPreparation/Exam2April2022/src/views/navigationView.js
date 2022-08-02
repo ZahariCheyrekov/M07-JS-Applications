@@ -6,8 +6,8 @@ const navigationTemplate = (user) => html`
             <img src="./images/logo.png" alt="logo">
         </section>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Dashboard</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
     
             ${user
                 ? userNavigation()
