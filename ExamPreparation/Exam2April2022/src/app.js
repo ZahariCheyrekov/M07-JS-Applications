@@ -21,4 +21,4 @@ page('/register', registerView);
 page('/logout', logoutHandler);
 page('/dashboard', dashboardView);
 
-page.start();
+page.start(); 
