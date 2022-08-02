@@ -1,4 +1,4 @@
-import { getAccessToken } from '../services/userService';
+import { getAccessToken } from '../services/userService.js';
 
 export const requester = (method, url, data) => {
     const options = {
