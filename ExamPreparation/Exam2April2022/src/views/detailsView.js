@@ -15,7 +15,7 @@ const detailsTemplate = (pet, isOwner, onDonation, donations, hasDonationBtn) =>
                     <h3>Breed: ${pet.breed}</h3>
                     <h4>Age: ${pet.age}</h4>
                     <h4>Weight: ${pet.weight}</h4>
-                    <h4 class="donation">Donation: ${donations}$</h4>
+                    <h4 class="donation">Donation: ${Number(donations) * 100}$</h4>
                 </div>
     
                 <div class="actionBtn">
