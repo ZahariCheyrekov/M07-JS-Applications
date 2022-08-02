@@ -4,6 +4,8 @@ import { authMiddleware } from './middlewares/authMiddleware.js';
 import { renderMiddleware } from './middlewares/renderMiddleware.js';
 import { navigationMiddleware } from './middlewares/navigationMiddleware.js';
 
+import { logoutHandler } from './handlers/logoutHandler.js';
+
 import { loginView } from './views/loginView.js';
 
 page(authMiddleware);
@@ -12,5 +14,6 @@ page(renderMiddleware);
 
 page('/', () => console.log('Home'));
 page('/login', loginView);
+page('/logout', logoutHandler);
 
 page.start();
