@@ -3,7 +3,7 @@ import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 import * as userService from '../services/userService.js';
 import * as requestService from '../services/requestService.js';
 
-const detailsTemplate = (game, user) => html`
+const detailsTemplate = (game, user, isOwner, comments, onComment) => html`
     <section id="game-details">
         <h1>Game Details</h1>
         <div class="info-section">
@@ -17,23 +17,18 @@ const detailsTemplate = (game, user) => html`
     
             <p class="text">${game.summary}</p>
     
-            <!-- Bonus ( for Guests and Users ) -->
             <div class="details-comments">
                 <h2>Comments:</h2>
+                ${comments.length > 0
+                ? html`
                 <ul>
-                    <!-- list all comments for current game (If any) -->
-                    <li class="comment">
-                        <p>Content: I rate this one quite highly.</p>
-                    </li>
-                    <li class="comment">
-                        <p>Content: The best game.</p>
-                    </li>
-                </ul>
-                <!-- Display paragraph: If there are no games in the database -->
-                <p class="no-comment">No comments.</p>
+                    ${comments.map(comment => commentTemplate(comment))}
+                </ul>`
+                : html`<p class="no-comment">No comments.</p>`
+                }
             </div>
     
-            ${user 
+            ${isOwner 
             ? html`
             <div class="buttons">
                 <a href="/data/games/${game._id}/edit" class="button">Edit</a>
@@ -44,23 +39,47 @@ const detailsTemplate = (game, user) => html`
             }
         </div>
     
-        <!-- Bonus -->
-        <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) -->
-        <article class="create-comment">
-            <label>Add new comment:</label>
-            <form class="form">
-                <textarea name="comment" placeholder="Comment......"></textarea>
-                <input class="btn submit" type="submit" value="Add Comment">
-            </form>
-        </article>
+        ${(user && !isOwner)
+            ? html` 
+            <article class="create-comment">
+                <label>Add new comment:</label>
+                <form @submit=${onComment} class="form">
+                    <textarea name="comment" placeholder="Comment......"></textarea>
+                    <input class="btn submit" type="submit" value="Add Comment">
+                </form>
+            </article>`
+            : nothing
+        }
     </section>
+`;
+
+const commentTemplate = (comment) => html`
+    <li class="comment">
+        <p>Content: ${comment.comment}</p>
+    </li>
 `;
 
 export const detailsView = async (ctx) => {
     const user = userService.getUser();
-    const userId = user._id;
     const gameId = ctx.params.id;
 
-    requestService.getGameById(gameId)
-        .then(game => ctx.render(detailsTemplate(game, user)));
+    const onComment = (ev) => {
+        ev.preventDefault();
+
+        const { comment } = Object.fromEntries(new FormData(ev.currentTarget));
+       
+        requestService.addNewComment(gameId, comment)
+            .then(() => ctx.page.redirect(`/data/games/${gameId}`));
+        
+        ev.currentTarget.reset();
+    }
+    
+    const [comments, game] = await Promise.all([
+        requestService.getCommentsForGame(gameId),
+        requestService.getGameById(gameId)
+    ]);
+
+    const isOwner = user && user._id === game._ownerId;
+
+    ctx.render(detailsTemplate(game, user, isOwner, comments, onComment));
 }
