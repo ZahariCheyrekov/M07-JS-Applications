@@ -17,3 +17,6 @@ export const register = (email, password) =>
 export const logout = () =>
     request.get(`${url}/logout`)
         .then(() => userService.removeUser());
+
+export const getAllGames = () =>
+    request.get(`${baseUrl}/data/games?sortBy=_createdOn%20desc`);
