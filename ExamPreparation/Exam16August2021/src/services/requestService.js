@@ -35,3 +35,6 @@ export const editGame = (gameId, gameData) =>
 
 export const deleteGame = (gameId) =>
     request.del(`${baseUrl}/data/games/${gameId}`);
+
+export const getCommentsForGame = (gameId) =>
+    request.get(`${baseUrl}/data/comments?where=gameId%3D%22{gameId}%22`);
