@@ -36,8 +36,8 @@ const detailsTemplate = (game, user) => html`
             ${user 
             ? html`
             <div class="buttons">
-                <a href="#" class="button">Edit</a>
-                <a href="#" class="button">Delete</a>
+                <a href="/data/games/${game._id}/edit" class="button">Edit</a>
+                <a href="/data/games/${game._id}/delete" class="button">Delete</a>
             </div>
             `
             : nothing
@@ -62,5 +62,5 @@ export const detailsView = async (ctx) => {
     const gameId = ctx.params.id;
 
     requestService.getGameById(gameId)
-        .then(game => ctx.render(detailsTemplate(game)));
+        .then(game => ctx.render(detailsTemplate(game, user)));
 }
