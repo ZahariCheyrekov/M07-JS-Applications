@@ -23,3 +23,6 @@ export const getAllGames = () =>
 
 export const getNewGames = () =>
     request.get(`${baseUrl}/data/games?sortBy=_createdOn%20desc&distinct=category`);
+
+export const createNewGame = (data) =>
+    request.post(`${baseUrl}/data/games`, data);
