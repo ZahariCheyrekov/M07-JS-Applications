@@ -1,0 +1,1 @@
+export const DELETE_GAME_CONFIRM_MESSAGE = 'Are you sure you want to delete this game?';
