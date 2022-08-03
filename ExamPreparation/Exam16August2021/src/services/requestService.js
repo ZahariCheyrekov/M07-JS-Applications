@@ -20,3 +20,6 @@ export const logout = () =>
 
 export const getAllGames = () =>
     request.get(`${baseUrl}/data/games?sortBy=_createdOn%20desc`);
+
+export const getNewGames = () =>
+    request.get(`${baseUrl}/data/games?sortBy=_createdOn%20desc&distinct=category`);
