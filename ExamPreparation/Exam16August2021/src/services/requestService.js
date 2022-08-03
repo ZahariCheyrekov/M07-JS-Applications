@@ -29,3 +29,6 @@ export const getNewGames = () =>
 
 export const createNewGame = (data) =>
     request.post(`${baseUrl}/data/games`, data);
+
+export const editGame = (gameId, gameData) =>
+    request.put(`${baseUrl}/data/games/${gameId}`, gameData);
