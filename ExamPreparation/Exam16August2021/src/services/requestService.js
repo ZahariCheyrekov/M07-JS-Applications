@@ -18,6 +18,9 @@ export const logout = () =>
     request.get(`${url}/logout`)
         .then(() => userService.removeUser());
 
+export const getGameById = (gameId) =>
+    request.get(`${baseUrl}/data/games/${gameId}`);
+
 export const getAllGames = () =>
     request.get(`${baseUrl}/data/games?sortBy=_createdOn%20desc`);
 
