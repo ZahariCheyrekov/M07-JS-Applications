@@ -32,3 +32,6 @@ export const createNewGame = (data) =>
 
 export const editGame = (gameId, gameData) =>
     request.put(`${baseUrl}/data/games/${gameId}`, gameData);
+
+export const deleteGame = (gameId) =>
+    request.del(`${baseUrl}/data/games/${gameId}`);
