@@ -12,6 +12,7 @@ import { loginView } from './views/loginView.js';
 import { registerView } from './views/registerView.js';
 import { createView } from './views/createView.js';
 import { allMemesView } from './views/allMemesView.js';
+import { detailsView } from './views/detailsView.js';
 
 page(authMiddleware);
 page(navigationMiddleware);
@@ -23,5 +24,6 @@ page('/register', registerView);
 page('/logout', logoutHandler);
 page('/create', createView);
 page('/all-memes', allMemesView);
+page('/data/memes/:id', detailsView);
 
 page.start();
