@@ -23,8 +23,6 @@ export const request = async (method, url, data) => {
 
     return fetch(url, options)
         .then(res => {
-            console.log(res)
-
             if (!res.ok) {
                 throw new Error(res.statusText);
             }
