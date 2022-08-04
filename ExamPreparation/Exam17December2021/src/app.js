@@ -10,6 +10,7 @@ import { logoutHandler } from './handlers/logoutHandler.js';
 import { homeView } from './views/homeView.js';
 import { loginView } from './views/loginView.js';
 import { registerView } from './views/registerView.js';
+import { createView } from './views/createView.js';
 
 page(authMiddleware);
 page(navigationMiddleware);
@@ -19,5 +20,6 @@ page('/', homeHandler, homeView);
 page('/login', loginView);
 page('/register', registerView);
 page('/logout', logoutHandler);
+page('/create', createView);
 
 page.start();
