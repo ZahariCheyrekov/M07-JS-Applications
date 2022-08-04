@@ -14,6 +14,7 @@ import { createView } from './views/createView.js';
 import { allMemesView } from './views/allMemesView.js';
 import { detailsView } from './views/detailsView.js';
 import { editView } from './views/editView.js';
+import { myProfileView } from './views/myProfileView.js';
 
 page(authMiddleware);
 page(navigationMiddleware);
@@ -27,5 +28,6 @@ page('/create', createView);
 page('/all-memes', allMemesView);
 page('/data/memes/:id', detailsView);
 page('/data/memes/:id/edit', editView);
+page('/my-profile', myProfileView);
 
 page.start();
