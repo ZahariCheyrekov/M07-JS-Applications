@@ -1,9 +1,10 @@
-import { html } from '../../node_modules/lit-html/lit-html.js';
+import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 
 import * as requestService from '../services/requestService.js';
 import { ALL_FIELDS_ARE_REQUIRED_MESSAGE, PASSWRODS_MUST_MATCH_MESSAGE } from '../messages/alertMessages.js';
 import { inputValidator } from '../validators/inputValidator.js';
 import { passwordEqualityValidator } from '../validators/passwordEqualityValidator.js';
+import { notificationHandler } from '../handlers/notificationHandler.js';
 
 const registerTemplate = (onSubmit) => html`
     <section id="register">
@@ -42,14 +43,14 @@ export const registerView = (ctx) => {
         const isValid = inputValidator(data);
 
         if (!isValid) {
-            alert(ALL_FIELDS_ARE_REQUIRED_MESSAGE);
+            notificationHandler(ALL_FIELDS_ARE_REQUIRED_MESSAGE);
             return;
         }
 
         const isEqual = passwordEqualityValidator(data.password, data.repeatPass);
 
         if (!isEqual) {
-            alert(PASSWRODS_MUST_MATCH_MESSAGE);
+            notificationHandler(PASSWRODS_MUST_MATCH_MESSAGE);
             return;
         }
 
