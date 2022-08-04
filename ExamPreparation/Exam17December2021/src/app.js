@@ -6,6 +6,7 @@ import { renderMiddleware } from './middlewares/renderMiddleware.js';
 
 import { homeHandler } from './handlers/homeHandler.js';
 
+import { homeView } from './views/homeView.js';
 
 page(authMiddleware);
 page(navigationMiddleware);
