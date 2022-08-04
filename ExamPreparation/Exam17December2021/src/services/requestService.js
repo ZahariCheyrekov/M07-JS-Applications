@@ -32,3 +32,6 @@ export const editMeme = (memeId, memeData) =>
 
 export const deleteMeme = (memeId) =>
     request.del(`${baseUrl}/data/memes/${memeId}`);
+
+export const getUserMemes = (userId) =>
+    request.get(`${baseUrl}/data/memes?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`);
