@@ -15,12 +15,12 @@ const detailsTemplate = (meme, isOwner) => html`
                 <p>${meme.description}</p>
     
                 ${isOwner
-                ? html`
+        ? html`
                 <a class="button warning" href="/data/memes/${meme._id}/edit">Edit</a>
                 <button class="button danger">Delete</button>
                 `
-                : nothing
-                }
+        : nothing
+    }
             </div>
         </div>
     </section>
@@ -33,9 +33,9 @@ export const detailsView = (ctx) => {
         .then(meme => {
             const user = userService.getUser();
             const isOwner = user
-                ? user._id === meme.ownerId
+                ? user._id === meme._ownerId
                 : false;
-
+            console.log(isOwner);
             ctx.render(detailsTemplate(meme, isOwner));
         });
 }
