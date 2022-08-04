@@ -4,10 +4,13 @@ import { authMiddleware } from './middlewares/authMiddleware.js';
 import { navigationMiddleware } from './middlewares/navigationMiddleware.js';
 import { renderMiddleware } from './middlewares/renderMiddleware.js';
 
+import { homeHandler } from './handlers/homeHandler.js';
+
+
 page(authMiddleware);
 page(navigationMiddleware);
 page(renderMiddleware);
 
-page('/', () => console.log('Home'));
+page('/', homeHandler, homeView);
 
 page.start();
