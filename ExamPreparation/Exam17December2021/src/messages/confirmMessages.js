@@ -1,1 +1,1 @@
-export const DELETE_POST_CONFIRM_MESSAGE = 'Are you sure you want to delete this post?';
+export const DELETE_MEME_CONFIRM_MESSAGE = 'Are you sure you want to delete this meme?';
