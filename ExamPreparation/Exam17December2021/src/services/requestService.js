@@ -17,3 +17,6 @@ export const register = (email, password) =>
 export const logout = () =>
     request.get(`${url}/logout`)
         .then(() => userService.removeUser());
+
+export const createMeme = (data) =>
+    request.post(`${baseUrl}/data/memes`, data);
