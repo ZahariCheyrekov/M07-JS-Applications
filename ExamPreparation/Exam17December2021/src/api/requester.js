@@ -1,6 +1,7 @@
 import * as userService from '../services/userService.js';
+import { notificationHandler } from '../handlers/notificationHandler.js';
 
-export const request = (method, url, data) => {
+export const request = async (method, url, data) => {
     const options = {
         method,
         headers: {}
@@ -21,7 +22,18 @@ export const request = (method, url, data) => {
     }
 
     return fetch(url, options)
-        .then(res => res.json());
+        .then(res => {
+            console.log(res)
+
+            if (!res.ok) {
+                throw new Error(res.statusText);
+            }
+            
+            return res.json();
+        })
+        .catch(error => {
+            notificationHandler(error);
+        });
 }
 
 export const get = request.bind(null, 'GET');
