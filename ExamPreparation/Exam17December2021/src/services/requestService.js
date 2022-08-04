@@ -29,3 +29,6 @@ export const getAllMemes = () =>
 
 export const editMeme = (memeId, memeData) =>
     request.put(`${baseUrl}/data/memes/${memeId}`, memeData);
+
+export const deleteMeme = (memeId) =>
+    request.del(`${baseUrl}/data/memes/${memeId}`);
