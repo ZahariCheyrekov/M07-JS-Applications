@@ -26,3 +26,6 @@ export const getMemeById = (memeId) =>
 
 export const getAllMemes = () =>
     request.get(`${baseUrl}/data/memes?sortBy=_createdOn%20desc`);
+
+export const editMeme = (memeId, memeData) =>
+    request.put(`${baseUrl}/data/memes/${memeId}`, memeData);
