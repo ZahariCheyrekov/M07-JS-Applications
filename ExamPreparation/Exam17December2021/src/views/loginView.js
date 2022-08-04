@@ -3,6 +3,7 @@ import { html } from '../../node_modules/lit-html/lit-html.js';
 import * as requestService from '../services/requestService.js';
 import { inputValidator } from '../validators/inputValidator.js';
 import { ALL_FIELDS_ARE_REQUIRED_MESSAGE } from '../messages/alertMessages.js';
+import { notificationHandler } from '../handlers/notificationHandler.js';
 
 const loginTemplate = (onSubmit) => html`
     <section id="login">
@@ -31,7 +32,7 @@ export const loginView = (ctx) => {
         const isValid = inputValidator(data);
 
         if (!isValid) {
-            alert(ALL_FIELDS_ARE_REQUIRED_MESSAGE);
+            notificationHandler(ALL_FIELDS_ARE_REQUIRED_MESSAGE);
             return;
         }
 
