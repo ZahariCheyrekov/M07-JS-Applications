@@ -11,6 +11,7 @@ import { homeView } from './views/homeView.js';
 import { loginView } from './views/loginView.js';
 import { registerView } from './views/registerView.js';
 import { createView } from './views/createView.js';
+import { allMemesView } from './views/allMemesView.js';
 
 page(authMiddleware);
 page(navigationMiddleware);
@@ -21,5 +22,6 @@ page('/login', loginView);
 page('/register', registerView);
 page('/logout', logoutHandler);
 page('/create', createView);
+page('/all-memes', allMemesView);
 
 page.start();
