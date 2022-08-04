@@ -1,1 +1,0 @@
-export const DELETE_MEME_CONFIRM_MESSAGE = () => confirm('Do you want to delete this meme?');
