@@ -35,7 +35,7 @@ export const detailsView = (ctx) => {
             const isOwner = user
                 ? user._id === meme._ownerId
                 : false;
-            console.log(isOwner);
+
             ctx.render(detailsTemplate(meme, isOwner));
         });
 }
