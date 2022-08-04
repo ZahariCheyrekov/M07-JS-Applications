@@ -2,8 +2,9 @@ import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 
 import * as userService from '../services/userService.js';
 import * as requestService from '../services/requestService.js';
+import { deleteHandler } from '../handlers/deleteHandler.js';
 
-const detailsTemplate = (meme, isOwner) => html`
+const detailsTemplate = (meme, isOwner, ctx) => html`
     <section id="meme-details">
         <h1>Meme Title: ${meme.title}</h1>
         <div class="meme-details">
@@ -15,12 +16,12 @@ const detailsTemplate = (meme, isOwner) => html`
                 <p>${meme.description}</p>
     
                 ${isOwner
-        ? html`
+                ? html`
                 <a class="button warning" href="/data/memes/${meme._id}/edit">Edit</a>
-                <button class="button danger">Delete</button>
+                <button class="button danger" @click=${()=> deleteHandler(ctx)}>Delete</button>
                 `
-        : nothing
-    }
+                : nothing
+                }
             </div>
         </div>
     </section>
@@ -36,6 +37,6 @@ export const detailsView = (ctx) => {
                 ? user._id === meme._ownerId
                 : false;
 
-            ctx.render(detailsTemplate(meme, isOwner));
+            ctx.render(detailsTemplate(meme, isOwner, ctx));
         });
 }
