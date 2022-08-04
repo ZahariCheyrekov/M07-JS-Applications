@@ -21,5 +21,8 @@ export const logout = () =>
 export const createMeme = (data) =>
     request.post(`${baseUrl}/data/memes`, data);
 
+export const getMemeById = (memeId) =>
+    request.get(`${baseUrl}/data/memes/${memeId}`);
+
 export const getAllMemes = () =>
     request.get(`${baseUrl}/data/memes?sortBy=_createdOn%20desc`);
