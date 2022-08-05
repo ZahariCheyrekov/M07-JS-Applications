@@ -26,3 +26,6 @@ export const createPet = (petData) =>
 
 export const getPetById = (petId) =>
     request.get(`${baseUrl}/data/pets/${petId}`);
+
+export const editPet = (petId, data) =>
+    request.put(`${baseUrl}/data/pets/${petId}`, data);
