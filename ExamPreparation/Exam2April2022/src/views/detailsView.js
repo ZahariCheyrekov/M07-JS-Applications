@@ -2,8 +2,9 @@ import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 
 import * as userService from '../services/userService.js';
 import * as requestService from '../services/requestService.js';
+import { donationHandler } from '../handlers/donationHandler.js';
 
-const detailsTemplate = (pet, user) => html`
+const detailsTemplate = (pet, user, isOwner, donations, hasDonationBtn, ctx) => html`
     <section id="detailsPage">
         <div class="details">
             <div class="animalPic">
@@ -15,23 +16,23 @@ const detailsTemplate = (pet, user) => html`
                     <h3>Breed: ${pet.breed}</h3>
                     <h4>Age: ${pet.age}</h4>
                     <h4>Weight: ${pet.weight}</h4>
-                    <h4 class="donation">Donation: 0$</h4>
+                    <h4 class="donation">Donation: ${Number(donations) * 100}$</h4>
                 </div>
-                <!-- TODO: Check donations!!! (Bonus points)-->
     
-                ${user 
+                ${user &&    
+                html`
+                <div class="actionBtn">
+                ${isOwner
                 ? html`
-                  <div class="actionBtn">
-                    <!-- Only for registered user and creator of the pets-->
-    
                     <a href="/data/pets/${pet._id}/edit" class="edit">Edit</a>
-                    <a href="/data/pets/${pet._id}/delete" class="remove">Delete</a>
-    
-                    <!--(Bonus Part) Only for no creator and user-->
-                    <a href="#" class="donate">Donate</a>
-                </div>
-                `
+                    <a href="/data/pets/${pet._id}/delete" class="remove">Delete</a>`
                 : nothing
+                }
+                ${hasDonationBtn
+                ? html`<a href="#" class="donate" @click=${() => donationHandler(ctx, pet._id)}>Donate</a>`
+                : nothing
+                }   
+                </div>`
                 }
             </div>
         </div>
@@ -42,6 +43,14 @@ export const detailsView = async (ctx) => {
     const user = userService.getUser();
     const petId = ctx.params.id;
 
-    requestService.getPetById(petId)
-        .then(pet => ctx.render(detailsTemplate(pet, user)));
+    const [pet, donations, hasDonation] = await Promise.all([
+        requestService.getPetById(petId),
+        requestService.getDonationsForPet(petId),
+        user ? requestService.getUserDonationForPet(petId, user._id) : 0
+    ]);
+
+    const isOwner = user && user._id == pet._ownerId;
+    const hasDonationBtn = user && !isOwner && hasDonation === 0;
+
+    ctx.render(detailsTemplate(pet, user, isOwner, donations, hasDonationBtn, ctx));
 }
