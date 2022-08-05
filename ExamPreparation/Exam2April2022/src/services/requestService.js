@@ -23,3 +23,6 @@ export const getAllPets = () =>
 
 export const createPet = (petData) =>
     request.post(`${baseUrl}/data/pets`, petData);
+
+export const getPetById = (petId) =>
+    request.get(`${baseUrl}/data/pets/${petId}`);
