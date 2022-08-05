@@ -17,3 +17,6 @@ export const register = (email, password) =>
 export const logout = () =>
     request.get(`${url}/logout`)
         .then(() => userService.removeUser());
+
+export const getAllPets = () =>
+    request.get(`${baseUrl}/data/pets?sortBy=_createdOn%20desc&distinct=name`);
