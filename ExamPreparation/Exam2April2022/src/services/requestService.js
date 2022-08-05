@@ -18,16 +18,16 @@ export const logout = () =>
     request.get(`${url}/logout`)
         .then(() => userService.removeUser());
 
-export const getAllPets = () =>
+export const getPets = () =>
     request.get(`${baseUrl}/data/pets?sortBy=_createdOn%20desc&distinct=name`);
 
-export const createPet = (petData) =>
-    request.post(`${baseUrl}/data/pets`, petData);
+export const createPet = (data) =>
+    request.post(`${baseUrl}/data/pets`, data);
 
 export const getPetById = (petId) =>
     request.get(`${baseUrl}/data/pets/${petId}`);
 
-export const editPet = (petId, data) =>
+export const editCard = (petId, data) =>
     request.put(`${baseUrl}/data/pets/${petId}`, data);
 
 export const deletePet = (petId) =>
@@ -36,8 +36,8 @@ export const deletePet = (petId) =>
 export const addDonation = (petId) =>
     request.post(`${baseUrl}/data/donation`, { petId });
 
-export const getDonationsForPet = (petId) =>
+export const getPetDonations = (petId) =>
     request.get(`${baseUrl}/data/donation?where=petId%3D%22${petId}%22&distinct=_ownerId&count`);
 
-export const getUserDonationForPet = (petId, userId) =>
+export const getDonationForPet = (petId, userId) =>
     request.get(`${baseUrl}/data/donation?where=petId%3D%22${petId}%22%20and%20_ownerId%3D%22${userId}%22&count`);

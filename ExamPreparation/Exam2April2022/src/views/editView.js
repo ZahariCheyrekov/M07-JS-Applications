@@ -50,10 +50,10 @@ export const editView = (ctx) => {
             return;
         }
 
-        requestService.editPet(petId, data)
+        requestService.editCard(petId, data)
             .then(() => ctx.page.redirect(`/data/pets/${petId}`));
     }
 
     requestService.getPetById(petId)
-        .then(pet => ctx.render(editTemplate(onSubmit, pet)));
+        .then(post => ctx.render(editTemplate(onSubmit, post)));
 }

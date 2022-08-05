@@ -29,4 +29,4 @@ page('/data/pets/:id', detailsView);
 page('/data/pets/:id/edit', editView);
 page('/data/pets/:id/delete', deleteHandler);
 
-page.start();
+page.start(); 

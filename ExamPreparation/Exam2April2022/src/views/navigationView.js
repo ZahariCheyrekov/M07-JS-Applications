@@ -9,8 +9,11 @@ const navigationTemplate = (user) => html`
             <li><a href="/">Home</a></li>
             <li><a href="/dashboard">Dashboard</a></li>
     
-            ${user ? userNavigation() : guestNavigation()}
-        </ul>
+            ${user
+                ? userNavigation()
+                : guestNavigation()
+            }
+        </ul> 
     </nav>
 `;
 

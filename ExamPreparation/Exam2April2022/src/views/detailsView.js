@@ -2,9 +2,8 @@ import { html, nothing } from '../../node_modules/lit-html/lit-html.js';
 
 import * as userService from '../services/userService.js';
 import * as requestService from '../services/requestService.js';
-import { donationHandler } from '../handlers/donationHandler.js';
 
-const detailsTemplate = (pet, user, isOwner, donations, hasDonationBtn, ctx) => html`
+const detailsTemplate = (pet, isOwner, onDonation, donations, hasDonationBtn) => html`
     <section id="detailsPage">
         <div class="details">
             <div class="animalPic">
@@ -19,21 +18,19 @@ const detailsTemplate = (pet, user, isOwner, donations, hasDonationBtn, ctx) => 
                     <h4 class="donation">Donation: ${Number(donations) * 100}$</h4>
                 </div>
     
-                ${user &&    
-                html`
                 <div class="actionBtn">
-                ${isOwner
-                ? html`
-                    <a href="/data/pets/${pet._id}/edit" class="edit">Edit</a>
+                    ${isOwner 
+                    ? html`
+                     <a href="/data/pets/${pet._id}/edit" class="edit">Edit</a>
                     <a href="/data/pets/${pet._id}/delete" class="remove">Delete</a>`
-                : nothing
-                }
-                ${hasDonationBtn
-                ? html`<a href="#" class="donate" @click=${() => donationHandler(ctx, pet._id)}>Donate</a>`
-                : nothing
-                }   
-                </div>`
-                }
+                    : nothing
+                    }
+                    
+                    ${hasDonationBtn
+                    ? html`<a href="#" class="donate" @click=${onDonation}>Donate</a>`
+                    : nothing
+                    }
+                </div>
             </div>
         </div>
     </section>
@@ -41,16 +38,22 @@ const detailsTemplate = (pet, user, isOwner, donations, hasDonationBtn, ctx) => 
 
 export const detailsView = async (ctx) => {
     const user = userService.getUser();
+    const userId = user._id;
     const petId = ctx.params.id;
+
+    const onDonation = () => {
+        requestService.addDonation(petId)
+            .then(() => ctx.page.redirect(`/data/pets/${petId}`));
+    }
 
     const [pet, donations, hasDonation] = await Promise.all([
         requestService.getPetById(petId),
-        requestService.getDonationsForPet(petId),
-        user ? requestService.getUserDonationForPet(petId, user._id) : 0
+        requestService.getPetDonations(petId),
+        user ? requestService.getDonationForPet(petId, userId) : 0
     ]);
 
-    const isOwner = user && user._id == pet._ownerId;
+    const isOwner = user && userId == pet._ownerId;
     const hasDonationBtn = user && !isOwner && hasDonation === 0;
 
-    ctx.render(detailsTemplate(pet, user, isOwner, donations, hasDonationBtn, ctx));
+    ctx.render(detailsTemplate(pet, isOwner, onDonation, donations, hasDonationBtn));
 }

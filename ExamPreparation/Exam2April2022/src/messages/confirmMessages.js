@@ -1,1 +1,0 @@
-export const DELETE_PET_CONFIRM_MESSAGE = 'Are you sure you want to delete this pet?';
