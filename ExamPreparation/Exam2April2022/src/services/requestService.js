@@ -20,3 +20,6 @@ export const logout = () =>
 
 export const getAllPets = () =>
     request.get(`${baseUrl}/data/pets?sortBy=_createdOn%20desc&distinct=name`);
+
+export const createPet = (petData) =>
+    request.post(`${baseUrl}/data/pets`, petData);
