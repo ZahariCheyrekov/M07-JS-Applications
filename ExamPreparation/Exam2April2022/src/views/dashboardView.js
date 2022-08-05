@@ -24,9 +24,9 @@ const petTemplate = (pet) => html`
             <img class="animal-image-cover" src="${pet.image}">
         </article>
         <h2 class="name">${pet.naem}</h2>
-        <h3 class="breed">${pet.breed}l</h3>
+        <h3 class="breed">${pet.breed}</h3>
         <div class="action">
-            <a class="btn" href="#">Details</a>
+            <a class="btn" href="/data/pets/${pet._id}">Details</a>
         </div>
     </div>
 `;
