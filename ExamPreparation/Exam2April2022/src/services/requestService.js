@@ -31,4 +31,4 @@ export const editPet = (petId, data) =>
     request.put(`${baseUrl}/data/pets/${petId}`, data);
 
 export const deletePet = (petId) =>
-    request.del(`${baseUrl}/data/pets/${petId}`);
+    request.del(`${baseUrl}/data/pets/${petId}`); 
