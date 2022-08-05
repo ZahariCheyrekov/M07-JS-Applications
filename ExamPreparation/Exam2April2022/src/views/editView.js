@@ -24,7 +24,7 @@ const editTemplate = (onSubmit, pet) => html`
                 </div>
                 <div class="weight">
                     <label for="weight">Weight:</label>
-                    <input name="weight" id="weight" type="text" value="${pet.wight}">
+                    <input name="weight" id="weight" type="text" value="${pet.weight}">
                 </div>
                 <div class="image">
                     <label for="image">Image:</label>
