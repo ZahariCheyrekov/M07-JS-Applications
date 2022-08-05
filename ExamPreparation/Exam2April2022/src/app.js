@@ -8,4 +8,6 @@ page(authMiddleware);
 page(navigationMiddleware);
 page(renderMiddleware);
 
+page('/', () => console.log('Home'));
+
 page.start();
