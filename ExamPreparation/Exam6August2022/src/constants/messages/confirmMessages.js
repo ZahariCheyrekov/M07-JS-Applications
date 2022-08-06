@@ -1,0 +1,1 @@
+export const DELETE_OFFER_CONFIRM_MESSAGE = 'Are you sure you want to delete this offer?';
