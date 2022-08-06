@@ -16,7 +16,7 @@ export const editView = (ctx) => {
             alert(ALL_FIELDS_ARE_REQUIRED_MESSAGE);
             return;
         }
-
+ 
         requestService.editOfferById(offerId, data)
             .then(() => ctx.page.redirect(`/data/offers/${offerId}`));
     }
