@@ -20,7 +20,7 @@ export const registerView = (ctx) => {
         const isEqual = passwordEqualityValidator(data.password, data['re-password']);
 
         if (!isEqual) {
-            alert(PASSWRODS_MUST_MATCH_MESSAGE);
+            alert(PASSWRODS_MUST_MATCH_MESSAGE); 
             return;
         }
 
