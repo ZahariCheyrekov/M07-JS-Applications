@@ -3,7 +3,7 @@
 JS Applications course teaches more about `HTTP` requests and how to handle them. It explains what is `REST Services`, what is `BaaS (Backend-as-a-Service)` and how to work with it. The students learn more about what asynchronous code means `(Promises, using of async/await)`, what does `Templating` and `Routing` means and also how to use them correctly. During the JS Applications course the students are creating `SPA (Single Page Applications)`, while they are using all of the techinques learned from the course. The other thing is how to create and manage the architecture of the applications and how structure them efficiently. By the end of the course, the students explore different design patterns and their practical guidelines, create their own web components, use the `Web Components` standard, and build a `Webpack` environment from scratch.
 
 # Course Overview
-
+ 
 - <a href="#HTTP">HTTP and REST Services</a>
 - <a href="#AP">Asynchronous Programming</a>
 - <a href="#RDA">Remote Data and Authentication</a>
